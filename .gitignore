@@ -1,0 +1,72 @@
+# Node
+node_modules/
+
+# Build outputs
+dist/
+.vite/
+*.tsbuildinfo
+
+# Avoid compiled JS clutter if someone runs tsc without noEmit
+src/**/*.js
+src/**/*.js.map
+
+# Expo
+.expo/
+expo-debug.log
+
+# Expo native app folder node_modules
+SemanaSantaEcijaAppNative/node_modules/
+
+# Android
+android/
+**/build/
+**/gradle/
+*.keystore
+
+# iOS
+ios/
+Pods/
+*.xcworkspace
+*.xcuserstate
+*.xcodeproj/xcuserdata/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Caches and temp
+.cache/
+.tmp/
+
+# Generated data/artifacts (optional — uncomment if you don't want to commit generated JSONs)
+# public/data/hermandades-2025.json
+# SemanaSantaEcijaAppNative/assets/data/hermandades-2025.json
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Keystore / signing
+*.jks
+*.keystore
+
+# Misc
+package-lock.json
+

@@ -1,0 +1,4 @@
+# Ignorar estado local Expo para el proyecto nativo
+.expo/
+/.expo
+.expo/*
