@@ -11,6 +11,8 @@ import { getEscudoSource } from '@mobile/utils/escudos'
 import { getHeaderSource } from '@mobile/utils/headers'
 
 import AlertBanner from '@mobile/components/AlertBanner'
+import TwitterFeed from '@mobile/components/TwitterFeed'
+import UserGalleryModal from '@mobile/components/UserGalleryModal'
 
 export default function HermandadDetail() {
   const route = useRoute<DetailRouteProp>()
@@ -18,6 +20,7 @@ export default function HermandadDetail() {
   const { getHermandadById, toggleFavorite, loading, incidencias } = useHermandades()
   const id = route.params?.id
   const [expandedDesc, setExpandedDesc] = useState(false)
+  const [galleryVisible, setGalleryVisible] = useState(false)
   if (loading) return <Text style={styles.statusMsg}>Cargando...</Text>
   if (typeof id !== 'number') return <Text style={styles.statusMsg}>Sin parámetro</Text>
   const hermandad = getHermandadById(id)
@@ -28,11 +31,25 @@ export default function HermandadDetail() {
   const showAlert = incidencia && incidencia.isActive
 
   const headerSource = useMemo(() => {
-    if (!hermandad.mainImage) return null
-    // If it's a URL (http/https), use it directly
-    if (hermandad.mainImage.startsWith('http')) return { uri: hermandad.mainImage }
-    // Otherwise, look it up in the map
-    return getHeaderSource(hermandad.mainImage)
+    const imageIdentifier = hermandad.mainImage
+    if (!imageIdentifier) return null
+
+    // 1. Remote URL check (http/https)
+    const isRemote = imageIdentifier.startsWith('http://') || imageIdentifier.startsWith('https://')
+    if (isRemote) {
+      return { uri: imageIdentifier }
+    }
+
+    // 2. Local Asset lookup
+    const localAsset = getHeaderSource(imageIdentifier)
+    if (localAsset) {
+      return localAsset
+    }
+
+    // 3. Fallback / Unresolved
+    // If it's not a URL and not in our local map, it's an invalid identifier
+    console.warn(`[HermandadDetail] Could not resolve image identifier: "${imageIdentifier}"`)
+    return null
   }, [hermandad.mainImage])
 
   const duration = useMemo(() => {
@@ -98,9 +115,15 @@ export default function HermandadDetail() {
                 <TouchableOpacity accessibilityLabel="Volver" onPress={() => navigation.goBack()} style={styles.circleBtn}>
                   <Ionicons name="arrow-back" size={24} color={colors.textLight} />
                 </TouchableOpacity>
-                <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
-                  <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
-                </TouchableOpacity>
+                <View style={styles.heroTopRight}>
+                  <TouchableOpacity accessibilityLabel="Mi galería de fotos" onPress={() => setGalleryVisible(true)} style={styles.galleryPillBtn}>
+                    <Ionicons name="camera-outline" size={18} color={colors.textLight} />
+                    <Text style={styles.galleryPillText}>Galería</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
+                    <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
+                  </TouchableOpacity>
+                </View>
               </View>
               <View style={styles.heroBottom}>
                 <Text style={styles.heroTitle}>{hermandad.name}</Text>
@@ -116,9 +139,15 @@ export default function HermandadDetail() {
                 <TouchableOpacity accessibilityLabel="Volver" onPress={() => navigation.goBack()} style={styles.circleBtn}>
                   <Ionicons name="arrow-back" size={24} color={colors.textLight} />
                 </TouchableOpacity>
-                <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
-                  <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
-                </TouchableOpacity>
+                <View style={styles.heroTopRight}>
+                  <TouchableOpacity accessibilityLabel="Mi galería de fotos" onPress={() => setGalleryVisible(true)} style={styles.galleryPillBtn}>
+                    <Ionicons name="camera-outline" size={18} color={colors.textLight} />
+                    <Text style={styles.galleryPillText}>Galería</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
+                    <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
+                  </TouchableOpacity>
+                </View>
               </View>
               <View style={styles.heroCenterPlaceholder}>
                 <Ionicons name="images-outline" size={48} color={'rgba(255,255,255,0.5)'} />
@@ -396,6 +425,9 @@ export default function HermandadDetail() {
           })()}
         </SectionCard>
 
+        {/* Noticias de X (Twitter) */}
+        <TwitterFeed hermandadId={hermandad.id} />
+
         {/* Acción Favorito secundaria */}
         <TouchableOpacity
           accessibilityRole="button"
@@ -409,6 +441,14 @@ export default function HermandadDetail() {
 
         <Text style={styles.disclaimer}>Datos orientativos. Verifica horarios oficiales.</Text>
       </ScrollView>
+
+      {/* Galería Personal */}
+      <UserGalleryModal
+        visible={galleryVisible}
+        onClose={() => setGalleryVisible(false)}
+        hermandadId={hermandad.id}
+        hermandadName={hermandad.name}
+      />
     </SafeAreaView>
   )
 }
@@ -438,7 +478,10 @@ const styles = StyleSheet.create({
   heroGradient: { ...StyleSheet.absoluteFillObject, zIndex: 1 },
 
   heroTopBar: { position: 'absolute', top: 0, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: Platform.select({ ios: 44, android: 44, default: 16 }), zIndex: 10 },
+  heroTopRight: { flexDirection: 'row', gap: 10 },
   circleBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.3)', justifyContent: 'center', alignItems: 'center' },
+  galleryPillBtn: { flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'rgba(0,0,0,0.35)', paddingHorizontal: 14, paddingVertical: 10, borderRadius: 22 },
+  galleryPillText: { fontSize: 13, fontWeight: '600', color: colors.textLight, letterSpacing: 0.3 },
 
   heroBottom: { position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 20, paddingBottom: 20, zIndex: 10 },
   heroTitle: { fontSize: 28, fontWeight: '800', color: colors.textLight, marginBottom: 8, textShadowColor: 'rgba(0,0,0,0.75)', textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 4 },

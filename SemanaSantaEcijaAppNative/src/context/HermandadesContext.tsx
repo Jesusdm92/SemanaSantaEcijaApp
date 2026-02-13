@@ -22,6 +22,9 @@ interface HermandadesContextValue {
   // Incidencias en tiempo real
   incidencias: Record<string, Incidencia>
   globalAlert?: { active: boolean; message: string; type: IncidenciaType }
+  liveStatusLoading: boolean
+  liveStatusError: Error | null
+  refetchLiveStatus: () => Promise<void>
 }
 
 const FAVORITES_KEY = 'SS_ECIJA_FAVORITES'
@@ -33,7 +36,7 @@ export const HermandadesProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [loading, setLoading] = useState(true)
 
   // Hook de estado en vivo (polling automático)
-  const { incidencias, globalAlert } = useLiveStatus()
+  const { incidencias, globalAlert, isLoading: liveStatusLoading, error: liveStatusError, refetch: refetchLiveStatus } = useLiveStatus()
 
   useEffect(() => {
     ; (async () => {
@@ -67,7 +70,18 @@ export const HermandadesProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }
 
   return (
-    <HermandadesContext.Provider value={{ hermandades, getHermandades, getHermandadById, toggleFavorite, loading, incidencias, globalAlert }}>
+    <HermandadesContext.Provider value={{
+      hermandades,
+      getHermandades,
+      getHermandadById,
+      toggleFavorite,
+      loading,
+      incidencias,
+      globalAlert,
+      liveStatusLoading,
+      liveStatusError,
+      refetchLiveStatus
+    }}>
       {children}
     </HermandadesContext.Provider>
   )

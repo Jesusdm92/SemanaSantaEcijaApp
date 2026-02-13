@@ -5,33 +5,69 @@ import { colors } from '../theme/colors'
 import { useTypedNavigation } from '../hooks/useTypedNavigation'
 import { LinearGradient } from 'expo-linear-gradient'
 
+function getEasterDate(year: number): Date {
+  const f = Math.floor
+  const G = year % 19
+  const C = f(year / 100)
+  const H = (C - f(C / 4) - f((8 * C + 13) / 25) + 19 * G + 15) % 30
+  const I = H - f(H / 28) * (1 - f(29 / (H + 1)) * f((21 - G) / 11))
+  const J = (year + f(year / 4) + I + 2 - C + f(C / 4)) % 7
+  const L = I - J
+  const Month = 3 + f((L + 40) / 44)
+  const Day = L + 28 - 31 * f(Month / 4)
+  return new Date(year, Month - 1, Day)
+}
+
 function getHolyWeekDay(date: Date): string | null {
   const year = date.getFullYear()
-  const month = date.getMonth() // 0 = Enero, 2 = Marzo, 3 = Abril
-  const d = date.getDate()
+  const easter = getEasterDate(year)
 
-  // Semana Santa 2026: Del 29 de Marzo al 5 de Abril
-  if (year === 2026) {
-    if (month === 2) { // Marzo
-      if (d === 29) return 'Domingo de Ramos'
-      if (d === 30) return 'Lunes Santo'
-      if (d === 31) return 'Martes Santo'
-    } else if (month === 3) { // Abril
-      if (d === 1) return 'Miércoles Santo'
-      if (d === 2) return 'Jueves Santo'
-      if (d === 3) return 'Viernes Santo'
-      if (d === 4) return 'Sábado Santo'
-      if (d === 5) return 'Domingo de Resurrección'
-    }
+  // Clonar fechas para evitar efectos secundarios
+  const checkDate = new Date(date)
+  checkDate.setHours(0, 0, 0, 0)
+
+  const easterDate = new Date(easter)
+  easterDate.setHours(0, 0, 0, 0)
+
+  // Comparar con Domingo de Resurrección
+  const diffTime = checkDate.getTime() - easterDate.getTime()
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+  switch (diffDays) {
+    case -7: return 'Domingo de Ramos'
+    case -6: return 'Lunes Santo'
+    case -5: return 'Martes Santo'
+    case -4: return 'Miércoles Santo'
+    case -3: return 'Jueves Santo'
+    case -2: return 'Viernes Santo'
+    case -1: return 'Sábado Santo'
+    case 0: return 'Domingo de Resurrección'
+    default: return null
   }
-
-  return null
 }
 
 export default function HoySale() {
   const { hermandades, loading } = useHermandades()
   const navigation = useTypedNavigation()
-  const todayLabel = getHolyWeekDay(new Date())
+  const today = new Date()
+  const todayLabel = getHolyWeekDay(today)
+
+  // Cálculos para cuenta atrás / finalización
+  const year = today.getFullYear()
+  const easter = getEasterDate(year)
+
+  const todayZero = new Date(today)
+  todayZero.setHours(0, 0, 0, 0)
+  const easterZero = new Date(easter)
+  easterZero.setHours(0, 0, 0, 0)
+
+  const diffTime = easterZero.getTime() - todayZero.getTime()
+  const diffDaysToEaster = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  // Domingo de Ramos es 7 días antes del Domingo de Resurrección
+  const daysToPalmSunday = diffDaysToEaster - 7
+
+  const isPreSemana = daysToPalmSunday > 0
+  const isPostSemana = diffDaysToEaster < 0
 
   const hoy = useMemo(() => {
     if (!todayLabel) return []
@@ -60,8 +96,12 @@ export default function HoySale() {
         <Text style={styles.headerSubtitle}>
           {todayLabel ? (
             <>Procesiones para {todayLabel}</>
+          ) : isPreSemana ? (
+            <>Faltan {daysToPalmSunday} días para el Domingo de Ramos</>
+          ) : isPostSemana ? (
+            <>Semana Santa {year} finalizada</>
           ) : (
-            <>Hoy no es un día de Semana Santa</>
+            <>Hoy no es un día de procesiones</>
           )}
         </Text>
       </LinearGradient>
@@ -70,15 +110,27 @@ export default function HoySale() {
         <View style={styles.card}>
           <View style={styles.emptyState}>
             <View style={styles.emptyIcon}>
-              <Text style={{ fontSize: 48 }}>📅</Text>
+              <Text style={{ fontSize: 48 }}>
+                {isPreSemana ? '⏳' : isPostSemana ? '🏁' : '📅'}
+              </Text>
             </View>
             <Text style={styles.emptyTitle}>
-              {todayLabel ? 'No hay procesiones hoy' : 'Fuera de Semana Santa'}
+              {todayLabel
+                ? 'No hay procesiones hoy'
+                : isPreSemana
+                  ? 'Cuenta atrás'
+                  : isPostSemana
+                    ? 'Hasta el año que viene'
+                    : 'Fuera de Semana Santa'}
             </Text>
             <Text style={styles.emptySubtitle}>
               {todayLabel
                 ? `Hoy (${todayLabel}) no está prevista ninguna procesión.`
-                : 'Las procesiones de Semana Santa se celebran en fechas específicas. Consulta la Agenda Cofrade para ver el calendario completo.'}
+                : isPreSemana
+                  ? `Ya queda menos. La Semana Santa de Écija ${year} comenzará en ${daysToPalmSunday} días. ¡Prepárate!`
+                  : isPostSemana
+                    ? `La Semana Santa de Écija ${year} ha concluido. Esperamos que hayas disfrutado de una magnífica semana.`
+                    : 'Las procesiones de Semana Santa se celebran en fechas específicas.'}
             </Text>
             <TouchableOpacity
               style={styles.agendaButton}
