@@ -2,6 +2,9 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Hermandad } from '@mobile/types/hermandad'
 
+import { Incidencia, IncidenciaType } from '../types/incidencias'
+import { useLiveStatus } from '../hooks/useLiveStatus'
+
 // Intentamos cargar el dataset 2025 si existe; si falla, caemos al base
 let hermandadesData: any
 try {
@@ -16,6 +19,9 @@ interface HermandadesContextValue {
   getHermandadById: (id: number) => Hermandad | undefined
   toggleFavorite: (id: number) => Promise<void>
   loading: boolean
+  // Incidencias en tiempo real
+  incidencias: Record<string, Incidencia>
+  globalAlert?: { active: boolean; message: string; type: IncidenciaType }
 }
 
 const FAVORITES_KEY = 'SS_ECIJA_FAVORITES'
@@ -26,11 +32,14 @@ export const HermandadesProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [hermandades, setHermandades] = useState<Hermandad[]>([])
   const [loading, setLoading] = useState(true)
 
+  // Hook de estado en vivo (polling automático)
+  const { incidencias, globalAlert } = useLiveStatus()
+
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       try {
-  const baseRaw = (hermandadesData as Hermandad[])
-  const base: Hermandad[] = baseRaw.map(h => ({ ...h, isFavorite: !!h.isFavorite }))
+        const baseRaw = (hermandadesData as Hermandad[])
+        const base: Hermandad[] = baseRaw.map(h => ({ ...h, isFavorite: !!h.isFavorite }))
         const favRaw = await AsyncStorage.getItem(FAVORITES_KEY)
         const favs: Record<string, boolean> = favRaw ? JSON.parse(favRaw) : {}
         const merged = base.map(h => ({ ...h, isFavorite: !!favs[h.id] }))
@@ -58,7 +67,7 @@ export const HermandadesProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }
 
   return (
-    <HermandadesContext.Provider value={{ hermandades, getHermandades, getHermandadById, toggleFavorite, loading }}>
+    <HermandadesContext.Provider value={{ hermandades, getHermandades, getHermandadById, toggleFavorite, loading, incidencias, globalAlert }}>
       {children}
     </HermandadesContext.Provider>
   )
