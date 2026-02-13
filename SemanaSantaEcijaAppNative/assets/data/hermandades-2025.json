@@ -6,7 +6,7 @@
     "exitTime": "15:45",
     "entryTime": "23:15",
     "shieldUrl": "/assets/images/escudos/amor-el-olivo.png",
-    "mainImage": "",
+    "mainImage": "amor_header",
     "itinerary": [
       "Calle Alfonso Aragón 'Fofó'",
       "Calle Pensamiento",
@@ -70,7 +70,7 @@
     "exitTime": "12:00",
     "entryTime": "14:15",
     "shieldUrl": "/assets/images/escudos/borriquita.png",
-    "mainImage": "",
+    "mainImage": "borriquita_header",
     "itinerary": [
       "Plaza de Santa María",
       "Plaza de España (Por delante de Bar Emilio)",
@@ -116,7 +116,7 @@
     "exitTime": "18:30",
     "entryTime": "22:45",
     "shieldUrl": "/assets/images/escudos/cautivo-y-lagrimas.png",
-    "mainImage": "",
+    "mainImage": "cautivo_header",
     "itinerary": [
       "Plaza de Santa María",
       "Plaza de España",
@@ -175,7 +175,7 @@
     "exitTime": "19:00",
     "entryTime": "23:00",
     "shieldUrl": "/assets/images/escudos/yedra.png",
-    "mainImage": "",
+    "mainImage": "yedra_header",
     "itinerary": [
       "Barrera Santísimo Cristo de la Yedra",
       "Calle Emilio Castelar",
@@ -227,7 +227,7 @@
     "exitTime": "19:00",
     "entryTime": "00:30",
     "shieldUrl": "/assets/images/escudos/expiracion.png",
-    "mainImage": "",
+    "mainImage": "expiracion_header",
     "itinerary": [
       "Plaza de Santiago",
       "Calle Santiago",
@@ -299,7 +299,7 @@
     "exitTime": "18:30",
     "entryTime": "00:30",
     "shieldUrl": "/assets/images/escudos/san-gil.png",
-    "mainImage": "",
+    "mainImage": "sangil_header",
     "itinerary": [
       "Calle San Antonio",
       "Calle Cadenas",
@@ -370,7 +370,7 @@
     "exitTime": "19:15",
     "entryTime": "00:30",
     "shieldUrl": "/assets/images/escudos/hermandad-de-confalon.png",
-    "mainImage": "",
+    "mainImage": "confalon_header",
     "itinerary": [
       "Avda. Andalucía",
       "Calle Mendoza",
@@ -436,7 +436,7 @@
     "exitTime": "19:30",
     "entryTime": "00:45",
     "shieldUrl": "/assets/images/escudos/hermandad-de-la-sangre.png",
-    "mainImage": "",
+    "mainImage": "sangre_header",
     "itinerary": [
       "Plaza Ntra. Sra. del Valle",
       "Ramón Freire Gálvez",
@@ -495,7 +495,7 @@
     "exitTime": "19:15",
     "entryTime": "23:05",
     "shieldUrl": "/assets/images/escudos/mortaja.png",
-    "mainImage": "",
+    "mainImage": "mortaja_header",
     "itinerary": [
       "Barrera de D. Esteban Santos Peña",
       "Calle La Marquesa",
@@ -548,7 +548,7 @@
     "exitTime": "20:15",
     "entryTime": "00:40",
     "shieldUrl": "/assets/images/escudos/piedad.png",
-    "mainImage": "",
+    "mainImage": "piedad_header",
     "itinerary": [
       "Plaza de Santa María",
       "Calle Fernández Pintado",
@@ -605,7 +605,7 @@
     "exitTime": "06:00",
     "entryTime": "11:00",
     "shieldUrl": "/assets/images/escudos/san-juan.png",
-    "mainImage": "",
+    "mainImage": "sanjuan_header",
     "itinerary": [
       "Plaza de San Juan",
       "Calle Juan de Angulo",
@@ -664,7 +664,7 @@
     "exitTime": "00:00",
     "entryTime": "03:00",
     "shieldUrl": "/assets/images/escudos/silencio.png",
-    "mainImage": "",
+    "mainImage": "silencio_header",
     "itinerary": [
       "Plaza Nuestra Señora del Valle",
       "Calle Ramón Freire Gálvez",
@@ -717,7 +717,7 @@
     "exitTime": "20:00",
     "entryTime": "23:30",
     "shieldUrl": "/assets/images/escudos/sin-soga.png",
-    "mainImage": "",
+    "mainImage": "sinsoga_header",
     "itinerary": [
       "Plaza De España",
       "CARRERA OFICIAL",
@@ -773,7 +773,7 @@
     "exitTime": "18:15",
     "entryTime": "23:00",
     "shieldUrl": "/assets/images/escudos/soledad.png",
-    "mainImage": "",
+    "mainImage": "soledad_header",
     "itinerary": [
       "Calle Fuentes De Andalucía",
       "Calle San Juan Bosco",
@@ -834,7 +834,7 @@
     "exitTime": "10:00",
     "entryTime": "13:30",
     "shieldUrl": "/assets/images/escudos/resucitado.png",
-    "mainImage": "",
+    "mainImage": "resucitado_header",
     "itinerary": [
       "Plaza Nuestra Señora del Valle",
       "Calle Santa Cruz",

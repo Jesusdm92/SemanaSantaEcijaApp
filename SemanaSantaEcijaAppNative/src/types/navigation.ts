@@ -1,14 +1,16 @@
-import type { RouteProp } from '@react-navigation/native'
+import type { RouteProp, NavigatorScreenParams } from '@react-navigation/native'
 
 export type TabsParamList = {
   ListTab: undefined
   FavoritosTab: undefined
+  AgendaTab: undefined
+  HoyTab: undefined
   AboutTab: undefined
 }
 
 export type RootStackParamList = {
   Splash: undefined
-  Tabs: undefined
+  Tabs: NavigatorScreenParams<TabsParamList>
   Detail: { id: number }
 }
 

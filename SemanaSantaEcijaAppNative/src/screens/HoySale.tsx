@@ -5,23 +5,33 @@ import { colors } from '../theme/colors'
 import { useTypedNavigation } from '../hooks/useTypedNavigation'
 import { LinearGradient } from 'expo-linear-gradient'
 
-function mapWeekdayToSS(dayIndex: number): string | null {
-  const map = [
-    'Domingo de Ramos',
-    'Lunes Santo',
-    'Martes Santo',
-    'Miércoles Santo',
-    'Jueves Santo',
-    'Viernes Santo',
-    'Sábado Santo'
-  ]
-  return map[dayIndex] ?? null
+function getHolyWeekDay(date: Date): string | null {
+  const year = date.getFullYear()
+  const month = date.getMonth() // 0 = Enero, 2 = Marzo, 3 = Abril
+  const d = date.getDate()
+
+  // Semana Santa 2026: Del 29 de Marzo al 5 de Abril
+  if (year === 2026) {
+    if (month === 2) { // Marzo
+      if (d === 29) return 'Domingo de Ramos'
+      if (d === 30) return 'Lunes Santo'
+      if (d === 31) return 'Martes Santo'
+    } else if (month === 3) { // Abril
+      if (d === 1) return 'Miércoles Santo'
+      if (d === 2) return 'Jueves Santo'
+      if (d === 3) return 'Viernes Santo'
+      if (d === 4) return 'Sábado Santo'
+      if (d === 5) return 'Domingo de Resurrección'
+    }
+  }
+
+  return null
 }
 
 export default function HoySale() {
   const { hermandades, loading } = useHermandades()
   const navigation = useTypedNavigation()
-  const todayLabel = mapWeekdayToSS(new Date().getDay())
+  const todayLabel = getHolyWeekDay(new Date())
 
   const hoy = useMemo(() => {
     if (!todayLabel) return []
@@ -66,13 +76,13 @@ export default function HoySale() {
               {todayLabel ? 'No hay procesiones hoy' : 'Fuera de Semana Santa'}
             </Text>
             <Text style={styles.emptySubtitle}>
-              {todayLabel 
+              {todayLabel
                 ? `Hoy (${todayLabel}) no está prevista ninguna procesión.`
                 : 'Las procesiones de Semana Santa se celebran en fechas específicas. Consulta la Agenda Cofrade para ver el calendario completo.'}
             </Text>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.agendaButton}
-              onPress={() => navigation.navigate('Agenda')}
+              onPress={() => navigation.navigate('Tabs', { screen: 'AgendaTab' })}
               activeOpacity={0.8}
             >
               <Text style={styles.agendaButtonText}>📅 Ver Agenda Completa</Text>
@@ -93,8 +103,8 @@ export default function HoySale() {
 
             <View style={styles.cardBody}>
               {hoy.map((h, index) => (
-                <TouchableOpacity 
-                  key={h.id} 
+                <TouchableOpacity
+                  key={h.id}
                   style={[styles.item, index === hoy.length - 1 && { borderBottomWidth: 0 }]}
                   onPress={() => navigation.navigate('Detail', { id: h.id })}
                   activeOpacity={0.7}
@@ -135,9 +145,9 @@ export default function HoySale() {
 }
 
 const styles = StyleSheet.create({
-  center: { 
-    flex: 1, 
-    alignItems: 'center', 
+  center: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f5f5f5'
   },

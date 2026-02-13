@@ -13,7 +13,7 @@ interface Props {
 
 export const HermandadCard: React.FC<Props> = ({ hermandad, onPress, onToggleFavorite }) => {
   const escudoSource = getEscudoSource(hermandad.shieldUrl)
-  
+
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
       {escudoSource ? (

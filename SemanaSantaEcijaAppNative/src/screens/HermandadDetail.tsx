@@ -4,21 +4,36 @@ import { useRoute, useNavigation } from '@react-navigation/native'
 import type { DetailRouteProp } from '@mobile/types/navigation'
 import { useHermandades } from '@mobile/context/HermandadesContext'
 import { Ionicons } from '@expo/vector-icons'
-import { ItineraryMap } from '@mobile/components/ItineraryMap'
+
 import { colors } from '@mobile/theme/colors'
 import { LinearGradient } from 'expo-linear-gradient'
 import { getEscudoSource } from '@mobile/utils/escudos'
+import { getHeaderSource } from '@mobile/utils/headers'
+
+import AlertBanner from '@mobile/components/AlertBanner'
 
 export default function HermandadDetail() {
   const route = useRoute<DetailRouteProp>()
   const navigation = useNavigation()
-  const { getHermandadById, toggleFavorite, loading } = useHermandades()
+  const { getHermandadById, toggleFavorite, loading, incidencias } = useHermandades()
   const id = route.params?.id
   const [expandedDesc, setExpandedDesc] = useState(false)
   if (loading) return <Text style={styles.statusMsg}>Cargando...</Text>
   if (typeof id !== 'number') return <Text style={styles.statusMsg}>Sin parámetro</Text>
   const hermandad = getHermandadById(id)
   if (!hermandad) return <Text style={styles.statusMsg}>No encontrada</Text>
+
+  // Verificar si hay incidencia activa para esta hermandad
+  const incidencia = incidencias[id.toString()]
+  const showAlert = incidencia && incidencia.isActive
+
+  const headerSource = useMemo(() => {
+    if (!hermandad.mainImage) return null
+    // If it's a URL (http/https), use it directly
+    if (hermandad.mainImage.startsWith('http')) return { uri: hermandad.mainImage }
+    // Otherwise, look it up in the map
+    return getHeaderSource(hermandad.mainImage)
+  }, [hermandad.mainImage])
 
   const duration = useMemo(() => {
     if (!hermandad.exitTime || !hermandad.entryTime) return null
@@ -61,31 +76,66 @@ export default function HermandadDetail() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Hero */}
         <View style={styles.heroWrapper}>
-          <View style={[styles.heroImg, styles.heroPlaceholder]}>
-            <LinearGradient colors={['rgba(29,0,51,0.85)','rgba(29,0,51,0.35)','rgba(29,0,51,0)']} style={styles.heroGradient} />
-            <View style={styles.heroTopBar}>
-              <TouchableOpacity accessibilityLabel="Volver" onPress={() => navigation.goBack()} style={styles.circleBtn}>
-                <Ionicons name="arrow-back" size={20} color={colors.textLight} />
-              </TouchableOpacity>
-              <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
-                <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={22} color={colors.secondary} />
-              </TouchableOpacity>
+          {headerSource ? (
+            <View style={styles.heroContainer}>
+              {/* Background blurred layer to fill space */}
+              <Image
+                source={headerSource}
+                style={[StyleSheet.absoluteFill, { opacity: 0.6 }]}
+                blurRadius={Platform.OS === 'android' ? 5 : 10}
+                resizeMode="cover"
+              />
+              {/* Foreground image: fully visible */}
+              <Image
+                source={headerSource}
+                style={styles.heroImg}
+              />
+              <LinearGradient
+                colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.1)', 'rgba(0,0,0,0.8)']}
+                style={styles.heroGradient}
+              />
+              <View style={styles.heroTopBar}>
+                <TouchableOpacity accessibilityLabel="Volver" onPress={() => navigation.goBack()} style={styles.circleBtn}>
+                  <Ionicons name="arrow-back" size={24} color={colors.textLight} />
+                </TouchableOpacity>
+                <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
+                  <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.heroBottom}>
+                <Text style={styles.heroTitle}>{hermandad.name}</Text>
+                <View style={[styles.dayChip, { borderColor: colors.secondary }]}>
+                  <Text style={styles.dayChipText}>{hermandad.day}</Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.heroBottom}>
-              <Text style={styles.heroTitle}>{hermandad.name}</Text>
-              <View style={styles.dayChip}><Text style={styles.dayChipText}>{hermandad.day}</Text></View>
+          ) : (
+            <View style={[styles.heroContainer, styles.heroPlaceholder]}>
+              <LinearGradient colors={['rgba(29,0,51,1)', 'rgba(29,0,51,0.6)', 'rgba(29,0,51,1)']} style={styles.heroGradient} />
+              <View style={styles.heroTopBar}>
+                <TouchableOpacity accessibilityLabel="Volver" onPress={() => navigation.goBack()} style={styles.circleBtn}>
+                  <Ionicons name="arrow-back" size={24} color={colors.textLight} />
+                </TouchableOpacity>
+                <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
+                  <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.heroCenterPlaceholder}>
+                <Ionicons name="images-outline" size={48} color={'rgba(255,255,255,0.5)'} />
+                <Text style={styles.placeholderText}>Imagen pendiente</Text>
+              </View>
+              <View style={styles.heroBottom}>
+                <Text style={styles.heroTitle}>{hermandad.name}</Text>
+                <View style={styles.dayChip}><Text style={styles.dayChipText}>{hermandad.day}</Text></View>
+              </View>
             </View>
-            <View style={styles.heroCenterPlaceholder}>
-              <Ionicons name="images-outline" size={42} color={'rgba(255,255,255,0.55)'} />
-              <Text style={styles.placeholderText}>Imagen pendiente</Text>
-            </View>
-          </View>
+          )}
           {/* Escudo superpuesto */}
           <View style={styles.shieldContainer}>
             {(() => {
               const escudoSource = getEscudoSource(hermandad.shieldUrl)
               return escudoSource ? (
-                <Image 
+                <Image
                   source={escudoSource}
                   style={styles.shield}
                   resizeMode="contain"
@@ -99,9 +149,18 @@ export default function HermandadDetail() {
           </View>
         </View>
 
+        {/* Alerta de Incidencia en Tiempo Real */}
+        {showAlert && incidencia && (
+          <AlertBanner
+            type={incidencia.type}
+            title={incidencia.title}
+            message={incidencia.message}
+          />
+        )}
+
         {/* Horarios */}
         <SectionCard title="Horarios" icon="time-outline">
-          <View style={styles.rowBetween}> 
+          <View style={styles.rowBetween}>
             <View style={styles.timeBlock}>
               <Ionicons name="log-out-outline" size={16} color={colors.primary} />
               <Text style={styles.timeLabel}>Salida</Text>
@@ -146,7 +205,7 @@ export default function HermandadDetail() {
             {hermandad.tituloCompleto && (
               <Text style={[styles.paragraph, { fontWeight: '600', marginBottom: 12 }]}>{hermandad.tituloCompleto}</Text>
             )}
-            
+
             {/* Cajitas de información */}
             {(hermandad.anoFundacion || hermandad.iglesia || hermandad.fecha) && (
               <View style={styles.infoBoxes}>
@@ -173,12 +232,12 @@ export default function HermandadDetail() {
 
             {/* Link web oficial */}
             {hermandad.webOficial && hermandad.webOficial !== 'Información no encontrada' && (
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 12 }}
                 onPress={async () => {
                   try {
-                    const url = hermandad.webOficial?.startsWith('http') 
-                      ? hermandad.webOficial 
+                    const url = hermandad.webOficial?.startsWith('http')
+                      ? hermandad.webOficial
                       : `https://${hermandad.webOficial}`
                     const supported = await Linking.canOpenURL(url)
                     if (supported) {
@@ -289,7 +348,7 @@ export default function HermandadDetail() {
             {!!colorBadges.length && (
               <View style={styles.badgesRow}>
                 {colorBadges.map(c => (
-                  <View key={c} style={[styles.colorBadge,{backgroundColor: c}]} />
+                  <View key={c} style={[styles.colorBadge, { backgroundColor: c }]} />
                 ))}
               </View>
             )}
@@ -305,19 +364,36 @@ export default function HermandadDetail() {
 
         {/* Itinerario */}
         <SectionCard title="Itinerario" icon="walk-outline">
-          {hermandad.itinerary.map((s: string, i: number) => (
-            <View key={i} style={styles.stepRow}>
-              <View style={styles.stepCircle}><Text style={styles.stepCircleText}>{i+1}</Text></View>
-              <Text style={styles.stepText}>{s}</Text>
-            </View>
-          ))}
-        </SectionCard>
+          {(() => {
+            const [showAll, setShowAll] = useState(false)
+            const MAX_ITEMS = 5
+            const visibleItems = showAll ? hermandad.itinerary : hermandad.itinerary.slice(0, MAX_ITEMS)
+            const remaining = hermandad.itinerary.length - MAX_ITEMS
 
-        {/* Mapa */}
-        <SectionCard title="Mapa" icon="map-outline">
-          <View style={styles.mapWrapper}>
-            <ItineraryMap itinerary={hermandad.itinerary} />
-          </View>
+            return (
+              <View>
+                {visibleItems.map((s: string, i: number) => (
+                  <View key={i} style={styles.stepRow}>
+                    <View style={styles.stepCircle}><Text style={styles.stepCircleText}>{i + 1}</Text></View>
+                    <Text style={styles.stepText}>{s}</Text>
+                  </View>
+                ))}
+
+                {hermandad.itinerary.length > MAX_ITEMS && (
+                  <TouchableOpacity
+                    onPress={() => setShowAll(!showAll)}
+                    style={styles.expandButton}
+                    activeOpacity={0.7}
+                  >
+                    <Text style={styles.expandButtonText}>
+                      {showAll ? 'Ver menos' : `Ver más (${remaining} más)`}
+                    </Text>
+                    <Ionicons name={showAll ? "chevron-up" : "chevron-down"} size={16} color={colors.primary} />
+                  </TouchableOpacity>
+                )}
+              </View>
+            )
+          })()}
         </SectionCard>
 
         {/* Acción Favorito secundaria */}
@@ -341,7 +417,7 @@ interface SectionCardProps { title: string; icon: any; children: React.ReactNode
 function SectionCard({ title, icon, children }: SectionCardProps) {
   return (
     <View style={styles.card}>
-      <View style={styles.cardHeader}> 
+      <View style={styles.cardHeader}>
         <Ionicons name={icon} size={18} color={colors.secondary} />
         <Text style={styles.cardTitle}>{title}</Text>
       </View>
@@ -354,23 +430,28 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
   statusMsg: { padding: 16 },
   scrollContent: { paddingBottom: 48 },
-  heroWrapper: { position: 'relative' },
-  heroImg: { height: 260, justifyContent: 'space-between' },
-  heroImgInner: { resizeMode: 'cover' },
-  heroGradient: { ...StyleSheet.absoluteFillObject },
-  heroPlaceholder: { backgroundColor: '#2a0a40', position: 'relative', overflow: 'hidden' },
-  heroCenterPlaceholder: { position: 'absolute', top: '50%', left: 0, right: 0, transform: [{ translateY: -30 }], alignItems: 'center', opacity: 0.9 },
-  placeholderText: { marginTop: 4, color: 'rgba(255,255,255,0.7)', fontSize: 12, letterSpacing: 0.5 },
-  heroTopBar: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 12, paddingTop: Platform.select({ ios: 8, android: 12, default: 12 }) },
-  circleBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.15)', justifyContent: 'center', alignItems: 'center' },
-  heroBottom: { position: 'absolute', left: 0, right: 0, top: 72, paddingHorizontal: 16 },
-  heroTitle: { fontSize: 24, fontWeight: '700', color: colors.textLight, marginBottom: 8 },
-  dayChip: { alignSelf: 'flex-start', backgroundColor: 'rgba(75,0,130,0.75)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 14, borderWidth: 1, borderColor: 'rgba(212,175,55,0.6)' },
-  dayChipText: { color: colors.secondary, fontSize: 12, fontWeight: '600', letterSpacing: 0.5 },
-  shieldContainer: { position: 'absolute', left: 16, bottom: -40, width: 80, height: 80, borderRadius: 40, backgroundColor: colors.surface, justifyContent: 'center', alignItems: 'center', elevation: 4, shadowColor: '#000', shadowOpacity: 0.15, shadowRadius: 6, shadowOffset: { width: 0, height: 3 }, borderWidth: 2, borderColor: colors.secondary },
-  shield: { width: 64, height: 64 },
-  shieldPlaceholder: { backgroundColor: '#4b0082', borderRadius: 40, justifyContent: 'center', alignItems: 'center' },
-  shieldLetter: { color: colors.secondary, fontSize: 32, fontWeight: '700' },
+  heroWrapper: { width: '100%', backgroundColor: colors.surface },
+  heroContainer: { width: '100%', position: 'relative', overflow: 'hidden', backgroundColor: '#000' },
+  heroImg: { width: '100%', height: undefined, aspectRatio: 16 / 9, resizeMode: 'contain' },
+  // Placeholder keeps a fixed height if needed or matches aspect ratio
+  heroPlaceholder: { aspectRatio: 16 / 9, backgroundColor: '#2a0a40', justifyContent: 'space-between' },
+  heroGradient: { ...StyleSheet.absoluteFillObject, zIndex: 1 },
+
+  heroTopBar: { position: 'absolute', top: 0, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: Platform.select({ ios: 44, android: 44, default: 16 }), zIndex: 10 },
+  circleBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.3)', justifyContent: 'center', alignItems: 'center' },
+
+  heroBottom: { position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 20, paddingBottom: 20, zIndex: 10 },
+  heroTitle: { fontSize: 28, fontWeight: '800', color: colors.textLight, marginBottom: 8, textShadowColor: 'rgba(0,0,0,0.75)', textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 4 },
+  dayChip: { alignSelf: 'flex-start', backgroundColor: colors.secondary, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, elevation: 2 },
+  dayChipText: { color: '#ffffff', fontSize: 13, fontWeight: '700', letterSpacing: 0.5, textTransform: 'uppercase' },
+
+  heroCenterPlaceholder: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', zIndex: 5 },
+  placeholderText: { marginTop: 8, color: 'rgba(255,255,255,0.6)', fontSize: 14, fontWeight: '500' },
+
+  shieldContainer: { position: 'absolute', right: 24, bottom: -30, width: 90, height: 90, borderRadius: 45, backgroundColor: colors.surface, justifyContent: 'center', alignItems: 'center', elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 8, shadowOffset: { width: 0, height: 4 }, borderWidth: 3, borderColor: colors.surface, zIndex: 20 },
+  shield: { width: 70, height: 70 },
+  shieldPlaceholder: { width: '100%', height: '100%', backgroundColor: '#4b0082', borderRadius: 45, justifyContent: 'center', alignItems: 'center' },
+  shieldLetter: { color: colors.secondary, fontSize: 36, fontWeight: '700' },
   card: { marginTop: 56, marginHorizontal: 16, backgroundColor: colors.surface, borderRadius: 14, padding: 14, elevation: 2, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 4, shadowOffset: { width: 0, height: 2 } },
   cardHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 },
   cardTitle: { fontSize: 17, fontWeight: '700', color: colors.primary },
@@ -387,7 +468,9 @@ const styles = StyleSheet.create({
   stepCircle: { width: 26, height: 26, borderRadius: 13, backgroundColor: colors.primary, justifyContent: 'center', alignItems: 'center', marginRight: 10 },
   stepCircleText: { color: colors.textLight, fontSize: 12, fontWeight: '700' },
   stepText: { flex: 1, fontSize: 14, color: colors.textDark, lineHeight: 18 },
-  mapWrapper: { height: 240, borderRadius: 10, overflow: 'hidden', backgroundColor: '#eee', marginTop: 4 },
+  expandButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 12, marginTop: 4, gap: 6 },
+  expandButtonText: { fontSize: 14, fontWeight: '600', color: colors.primary },
+
   favoriteAction: { marginTop: 24, marginHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(212,175,55,0.12)', paddingVertical: 12, paddingHorizontal: 16, borderRadius: 12, borderWidth: 1, borderColor: 'rgba(212,175,55,0.4)' },
   favoriteActionActive: { backgroundColor: colors.secondary, borderColor: colors.secondary },
   favoriteActionText: { fontSize: 14, fontWeight: '600', color: colors.secondary },
