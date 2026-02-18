@@ -4,14 +4,7 @@ import { Hermandad } from '@mobile/types/hermandad'
 
 import { Incidencia, IncidenciaType } from '../types/incidencias'
 import { useLiveStatus } from '../hooks/useLiveStatus'
-
-// Intentamos cargar el dataset 2025 si existe; si falla, caemos al base
-let hermandadesData: any
-try {
-  hermandadesData = require('../../assets/data/hermandades-2025.json')
-} catch (e) {
-  hermandadesData = require('../../assets/data/hermandades.json')
-}
+import { getHermandades as fetchHermandades, DataSource } from '../services/hermandadesService'
 
 interface HermandadesContextValue {
   hermandades: Hermandad[]
@@ -41,7 +34,8 @@ export const HermandadesProvider: React.FC<{ children: React.ReactNode }> = ({ c
   useEffect(() => {
     ; (async () => {
       try {
-        const baseRaw = (hermandadesData as Hermandad[])
+        const { data: baseRaw, source } = await fetchHermandades()
+        if (__DEV__) console.log(`📊 Datos cargados desde: ${source}`)
         const base: Hermandad[] = baseRaw.map(h => ({ ...h, isFavorite: !!h.isFavorite }))
         const favRaw = await AsyncStorage.getItem(FAVORITES_KEY)
         const favs: Record<string, boolean> = favRaw ? JSON.parse(favRaw) : {}

@@ -8,7 +8,6 @@ Proyecto móvil (Expo + React Native) derivado de la versión web (Vite + React 
 - React Navigation (stack + bottom tabs)
 - AsyncStorage (favoritos)
 - TypeScript
-- react-native-webview (embeds de redes sociales)
 
 ## Estructura
 ```
@@ -16,8 +15,6 @@ SemanaSantaEcijaAppNative/
   assets/
     data/hermandades-2025.json
   src/
-    config/
-      socialConfig.ts          # Mapeo hermandadId → usuario de X (Twitter)
     context/HermandadesContext.tsx
     types/
       hermandad.ts
@@ -27,7 +24,6 @@ SemanaSantaEcijaAppNative/
     components/
       HermandadCard.tsx
       AlertBanner.tsx          # Banner de incidencias en tiempo real
-      TwitterFeed.tsx          # Feed embebido de X (Twitter) — optimizado
       UserGalleryModal.tsx     # Galería personal de fotos por hermandad
     screens/
       SplashScreen.tsx
@@ -61,83 +57,6 @@ npm run web      # prueba versión web (limitada)
 | UI / Layout         | Bootstrap + CSS             | Flexbox + StyleSheet                 |
 | Icons               | Bootstrap Icons             | @expo/vector-icons (Ionicons)        |
 | Assets estáticos    | public/                     | assets/                              |
-| Redes sociales      | N/A                         | react-native-webview (TwitterFeed)   |
-
----
-
-## 🐦 Feed de X (Twitter) — TwitterFeed
-
-Sección de noticias de X integrada en la pantalla de detalle de cada hermandad (`HermandadDetail.tsx`). Muestra el timeline embebido de la cuenta de X de la hermandad.
-
-### Arquitectura
-
-```
-socialConfig.ts  →  TwitterFeed.tsx  →  HermandadDetail.tsx
-(datos)              (componente)        (integración)
-```
-
-### Configuración — `src/config/socialConfig.ts`
-
-Este archivo contiene el mapeo entre el ID numérico de cada hermandad y su nombre de usuario en X (**sin la @**):
-
-```typescript
-export const twitterHandles: Record<number, string> = {
-  75910: 'amoryconcepcion', // Amor (El Olivo)
-  26978: '',                // Borriquita       ← vacío = no se muestra
-  57188: '',                // Cautivo y Lágrimas
-  // ... etc
-}
-```
-
-**Para configurar una hermandad**, simplemente reemplaza `''` por el usuario de X. Si el valor está vacío, la sección **no aparece** en la pantalla de detalle (cero impacto en rendimiento).
-
-### Optimizaciones implementadas
-
-| Requisito                | Implementación                                                                 |
-|--------------------------|--------------------------------------------------------------------------------|
-| **Lazy Loading**         | El WebView/iframe solo se monta cuando el usuario pulsa "Cargar noticias de X" |
-| **Spinner personalizado**| `ActivityIndicator` con `colors.primary` (#4b0082) + texto "Cargando noticias…"|
-| **Caché / Optimización** | `startInLoadingState`, `domStorageEnabled`, `androidLayerType="hardware"`      |
-| **Estabilidad visual**   | Contenedor con `height: 500px` fijo para evitar layout shift                   |
-| **Fallback automático**  | Si Twitter falla (rate limit, etc.), muestra un enlace directo al perfil        |
-
-### Comportamiento por plataforma
-
-| Plataforma       | Mecanismo                                                                      |
-|------------------|--------------------------------------------------------------------------------|
-| **Android/iOS**  | `react-native-webview` con HTML embebido + `widgets.js` de Twitter             |
-| **Web (Expo)**   | `<iframe>` con URL de `syndication.twitter.com` + detección de rate limit      |
-
-### Detección automática de Rate Limit (Web)
-
-En la versión web, Twitter puede devolver "Rate limit exceeded" como texto plano dentro del iframe (status 200, sin disparar `onError`). Para detectarlo automáticamente:
-
-1. Se escucha `window.addEventListener('message', ...)` esperando un `postMessage` del widget de Twitter que incluya `'twttr'`.
-2. Si en **8 segundos** no llega esa señal, se asume que el widget falló y se muestra el **fallback** automáticamente.
-3. El fallback muestra un botón **"Abrir en X"** que lleva al perfil directamente y un enlace de **"Reintentar carga"**.
-
-### Flujo del usuario
-
-```
-[Pantalla detalle hermandad]
-        │
-        ▼
-[Sección "Noticias de X"]
-   Botón "Cargar noticias de X"
-        │
-        ▼ (pulsa)
-  ┌─────────────────┐
-  │  Spinner carga  │
-  └────────┬────────┘
-           │
-     ┌─────┴──────┐
-     ▼             ▼
- [OK: Timeline]  [Error/Rate Limit]
-                   │
-                   ▼
-             [Fallback]
-          "Abrir en X" + "Reintentar"
-```
 
 ---
 
@@ -178,10 +97,9 @@ El sistema está diseñado con un enfoque **privacy-first**:
 ---
 
 ## Próximos pasos
-1. Completar los usuarios de X en `socialConfig.ts` para todas las hermandades.
-2. Integrar modo oscuro (usar `Appearance` / `useColorScheme`).
-3. Optimizar imágenes (preload con `Asset`) y añadir splash adaptativo.
-4. Sistema de notificaciones push para incidencias en tiempo real.
+1. Integrar modo oscuro (usar `Appearance` / `useColorScheme`).
+2. Optimizar imágenes (preload con `Asset`) y añadir splash adaptativo.
+3. Sistema de notificaciones push para incidencias en tiempo real.
 
 ## Notas
 - Los datos de hermandades se encuentran en `assets/data/hermandades-2025.json`.

@@ -4,12 +4,21 @@ import { useHermandades } from '@mobile/context/HermandadesContext'
 import { HermandadCard } from '@mobile/components/HermandadCard'
 import { colors } from '@mobile/theme/colors'
 import { useTypedNavigation } from '@mobile/hooks/useTypedNavigation'
+import AlertBanner from '../components/AlertBanner'
+
 export default function HermandadesList() {
   const navigation = useTypedNavigation()
-  const { hermandades, loading } = useHermandades()
+  const { hermandades, loading, globalAlert } = useHermandades()
 
   return (
     <SafeAreaView style={styles.safe}>
+      {globalAlert?.active && (
+        <AlertBanner
+          type={globalAlert.type}
+          title="AVISO GENERAL"
+          message={globalAlert.message}
+        />
+      )}
       {loading ? (
         <Text style={styles.loading}>Cargando...</Text>
       ) : (

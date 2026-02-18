@@ -5,6 +5,7 @@ import { colors } from '../theme/colors'
 import { Hermandad } from '../types/hermandad'
 import { useTypedNavigation } from '../hooks/useTypedNavigation'
 import { LinearGradient } from 'expo-linear-gradient'
+import WeatherForecast from '../components/WeatherForecast'
 
 const DAYS_ORDER = [
   'Domingo de Ramos', 'Lunes Santo', 'Martes Santo', 'Miércoles Santo',
@@ -20,12 +21,12 @@ export default function AgendaCofrade() {
   // Crear grupos para TODOS los días, tengan o no hermandades
   const allDays = useMemo(() => {
     const map = new Map<string, Hermandad[]>()
-    
+
     // Inicializar TODOS los días con array vacío
     DAYS_ORDER.forEach(day => {
       map.set(day, [])
     })
-    
+
     // Añadir hermandades a los días correspondientes
     hermandades.forEach(h => {
       const key = h.day || 'Sin día'
@@ -33,7 +34,7 @@ export default function AgendaCofrade() {
         map.get(key)!.push(h)
       }
     })
-    
+
     // Convertir a array manteniendo el orden de DAYS_ORDER
     return DAYS_ORDER.map(day => ({
       day,
@@ -73,12 +74,15 @@ export default function AgendaCofrade() {
         <Text style={styles.headerSubtitle}>Calendario completo de procesiones</Text>
       </LinearGradient>
 
+      {/* Previsión meteorológica 7 días */}
+      <WeatherForecast />
+
       {/* Selector de días con scroll horizontal */}
       <View style={styles.selectorContainer}>
         <View style={styles.selectorHeader}>
           <Text style={styles.selectorLabel}>SELECCIONA UN DÍA</Text>
-          <TouchableOpacity 
-            onPress={() => setOnlyFavs(v => !v)} 
+          <TouchableOpacity
+            onPress={() => setOnlyFavs(v => !v)}
             style={[styles.filterButton, onlyFavs && styles.filterButtonActive]}
           >
             <Text style={[styles.filterText, onlyFavs && styles.filterTextActive]}>
@@ -87,15 +91,15 @@ export default function AgendaCofrade() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false} 
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.tabsContainer}
         >
           {allDays.map(d => (
-            <TouchableOpacity 
-              key={d.day} 
-              style={[styles.tab, active === d.day && styles.tabActive]} 
+            <TouchableOpacity
+              key={d.day}
+              style={[styles.tab, active === d.day && styles.tabActive]}
               onPress={() => setActive(d.day)}
               activeOpacity={0.7}
             >
@@ -132,20 +136,20 @@ export default function AgendaCofrade() {
                 <Text style={{ fontSize: 48 }}>📅</Text>
               </View>
               <Text style={styles.emptyTitle}>
-                {onlyFavs 
+                {onlyFavs
                   ? 'No hay hermandades favoritas'
                   : 'No hay procesiones previstas'}
               </Text>
               <Text style={styles.emptySubtitle}>
-                {onlyFavs 
+                {onlyFavs
                   ? 'Desmarca el filtro para ver todas'
                   : 'Este día no tiene procesiones programadas'}
               </Text>
             </View>
           ) : (
             filteredItems.map((h, index) => (
-              <TouchableOpacity 
-                key={h.id} 
+              <TouchableOpacity
+                key={h.id}
                 style={[styles.item, index === filteredItems.length - 1 && { borderBottomWidth: 0 }]}
                 onPress={() => navigation.navigate('Detail', { id: h.id })}
                 activeOpacity={0.7}
@@ -185,9 +189,9 @@ export default function AgendaCofrade() {
 }
 
 const styles = StyleSheet.create({
-  center: { 
-    flex: 1, 
-    alignItems: 'center', 
+  center: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f5f5f5'
   },

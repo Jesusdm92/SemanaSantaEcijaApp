@@ -2,6 +2,11 @@ import { useState, useEffect, useCallback } from 'react'
 import { StatusJSON } from '../types/incidencias'
 import { LIVE_STATUS_URL } from '../utils/constants'
 
+/**
+ * Hook que consulta el estado de incidencias desde el Gist cada 60s.
+ * Solo se usa para mostrar datos en la UI (banners de alerta).
+ * Las notificaciones push las gestiona n8n → Expo Push API.
+ */
 export function useLiveStatus() {
     const [data, setData] = useState<StatusJSON | null>(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -22,7 +27,7 @@ export function useLiveStatus() {
             if (!res.ok) {
                 throw new Error(`HTTP error! status: ${res.status}`)
             }
-            const json = await res.json()
+            const json: StatusJSON = await res.json()
             setData(json)
         } catch (e) {
             console.warn('Error fetching live status', e)
@@ -34,7 +39,7 @@ export function useLiveStatus() {
 
     useEffect(() => {
         fetchStatus()
-        // Polling cada 60 segundos
+        // Polling cada 60 segundos para mantener la UI actualizada
         const interval = setInterval(fetchStatus, 60000)
         return () => clearInterval(interval)
     }, [fetchStatus])
@@ -48,3 +53,4 @@ export function useLiveStatus() {
         refetch: fetchStatus
     }
 }
+

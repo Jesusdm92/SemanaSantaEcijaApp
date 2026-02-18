@@ -46,8 +46,10 @@ function getHolyWeekDay(date: Date): string | null {
   }
 }
 
+import AlertBanner from '../components/AlertBanner'
+
 export default function HoySale() {
-  const { hermandades, loading } = useHermandades()
+  const { hermandades, loading, globalAlert, incidencias } = useHermandades()
   const navigation = useTypedNavigation()
   const today = new Date()
   const todayLabel = getHolyWeekDay(today)
@@ -106,6 +108,15 @@ export default function HoySale() {
         </Text>
       </LinearGradient>
 
+      {/* Alerta Global */}
+      {globalAlert?.active && (
+        <AlertBanner
+          type={globalAlert.type}
+          title="AVISO GENERAL"
+          message={globalAlert.message}
+        />
+      )}
+
       {hoy.length === 0 ? (
         <View style={styles.card}>
           <View style={styles.emptyState}>
@@ -154,40 +165,56 @@ export default function HoySale() {
             </View>
 
             <View style={styles.cardBody}>
-              {hoy.map((h, index) => (
-                <TouchableOpacity
-                  key={h.id}
-                  style={[styles.item, index === hoy.length - 1 && { borderBottomWidth: 0 }]}
-                  onPress={() => navigation.navigate('Detail', { id: h.id })}
-                  activeOpacity={0.7}
-                >
-                  <View style={styles.itemContent}>
-                    <View style={styles.itemHeader}>
-                      <Text style={styles.itemTitle}>{h.name}</Text>
-                      {h.isFavorite && <Text style={{ fontSize: 16 }}>⭐</Text>}
-                    </View>
-                    <View style={styles.itemTimes}>
-                      <View style={styles.timeItem}>
-                        <Text style={styles.timeLabel}>🚪 Salida:</Text>
-                        <Text style={styles.timeValue}>{h.exitTime}h</Text>
-                      </View>
-                      {h.times?.carreraOficial && (
-                        <View style={styles.timeItem}>
-                          <Text style={styles.timeLabel}>🏛️ CO:</Text>
-                          <Text style={styles.timeValue}>{h.times.carreraOficial}h</Text>
+              {hoy.map((h, index) => {
+                const incidencia = incidencias[h.id.toString()]
+                const hasAlert = incidencia && incidencia.isActive
+
+                return (
+                  <View key={h.id}>
+                    <TouchableOpacity
+                      style={[styles.item, (index === hoy.length - 1 && !hasAlert) && { borderBottomWidth: 0 }]}
+                      onPress={() => navigation.navigate('Detail', { id: h.id })}
+                      activeOpacity={0.7}
+                    >
+                      <View style={styles.itemContent}>
+                        <View style={styles.itemHeader}>
+                          <Text style={styles.itemTitle}>{h.name}</Text>
+                          {h.isFavorite && <Text style={{ fontSize: 16 }}>⭐</Text>}
                         </View>
-                      )}
-                      <View style={styles.timeItem}>
-                        <Text style={styles.timeLabel}>🏁 Entrada:</Text>
-                        <Text style={styles.timeValue}>{h.entryTime}h</Text>
+                        <View style={styles.itemTimes}>
+                          <View style={styles.timeItem}>
+                            <Text style={styles.timeLabel}>🚪 Salida:</Text>
+                            <Text style={styles.timeValue}>{h.exitTime}h</Text>
+                          </View>
+                          {h.times?.carreraOficial && (
+                            <View style={styles.timeItem}>
+                              <Text style={styles.timeLabel}>🏛️ CO:</Text>
+                              <Text style={styles.timeValue}>{h.times.carreraOficial}h</Text>
+                            </View>
+                          )}
+                          <View style={styles.timeItem}>
+                            <Text style={styles.timeLabel}>🏁 Entrada:</Text>
+                            <Text style={styles.timeValue}>{h.entryTime}h</Text>
+                          </View>
+                        </View>
                       </View>
-                    </View>
+                      <View style={styles.itemArrow}>
+                        <Text style={styles.arrowText}>👁️ Ver</Text>
+                      </View>
+                    </TouchableOpacity>
+
+                    {hasAlert && (
+                      <View style={{ paddingBottom: 16 }}>
+                        <AlertBanner
+                          type={incidencia.type}
+                          title={incidencia.title}
+                          message={incidencia.message}
+                        />
+                      </View>
+                    )}
                   </View>
-                  <View style={styles.itemArrow}>
-                    <Text style={styles.arrowText}>👁️ Ver</Text>
-                  </View>
-                </TouchableOpacity>
-              ))}
+                )
+              })}
             </View>
           </View>
         </ScrollView>

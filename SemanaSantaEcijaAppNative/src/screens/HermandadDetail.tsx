@@ -11,7 +11,6 @@ import { getEscudoSource } from '@mobile/utils/escudos'
 import { getHeaderSource } from '@mobile/utils/headers'
 
 import AlertBanner from '@mobile/components/AlertBanner'
-import TwitterFeed from '@mobile/components/TwitterFeed'
 import UserGalleryModal from '@mobile/components/UserGalleryModal'
 
 export default function HermandadDetail() {
@@ -178,7 +177,6 @@ export default function HermandadDetail() {
           </View>
         </View>
 
-        {/* Alerta de Incidencia en Tiempo Real */}
         {showAlert && incidencia && (
           <AlertBanner
             type={incidencia.type}
@@ -424,9 +422,6 @@ export default function HermandadDetail() {
             )
           })()}
         </SectionCard>
-
-        {/* Noticias de X (Twitter) */}
-        <TwitterFeed hermandadId={hermandad.id} />
 
         {/* Acción Favorito secundaria */}
         <TouchableOpacity
