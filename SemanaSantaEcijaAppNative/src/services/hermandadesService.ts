@@ -70,7 +70,9 @@ function mapSupabaseRow(row: any): Hermandad {
         isFavorite: false, // Los favoritos se gestionan localmente
         numeroPasos: row.numero_pasos,
         pasosImages: row.pasos_images || [],
-        pasos: row.pasos || [],
+        pasos: (row.pasos && row.pasos.length > 0)
+            ? row.pasos
+            : (localFallbackData.find((h: any) => h.id === row.id)?.pasos || []),
         times: row.times,
         iglesia: row.iglesia,
         lugarSalidaEntrada: row.lugar_salida_entrada,

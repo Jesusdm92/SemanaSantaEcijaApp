@@ -5,8 +5,8 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style={{ backgroundColor: 'var(--primary-color)' }}>
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center gap-2" to="/hermandades">
-          <img src="/assets/images/logo.png" alt="Logo Semana Santa Écija" width={36} height={36} className="rounded-circle shadow-sm" />
-          <span className="brand-title">Semana Santa Écija</span>
+          <img src="/assets/images/logo.png" alt="Logo Cruz de Guía Écija" width={38} height={38} style={{ borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }} />
+          <span className="brand-title">Cruz de Guía Écija</span>
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

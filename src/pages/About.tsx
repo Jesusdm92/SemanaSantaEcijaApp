@@ -1,4 +1,5 @@
 import React from 'react'
+import SeoHead from '@/components/SeoHead'
 
 interface LinkItem { label: string; url: string; icon: string }
 
@@ -20,20 +21,21 @@ const consejos = [
 
 const appFeatures = [
   { text: 'Favoritos persistentes en tu dispositivo.', icon: 'star' },
-  { text: 'Itinerario aproximado visualizado en mapa.', icon: 'map' },
+  { text: 'Consulta de itinerarios y horarios detallados.', icon: 'calendar' },
+  { text: 'Galería fotográfica actualizada.', icon: 'images' },
   { text: 'Interfaz adaptada para consulta rápida.', icon: 'phone' },
-  { text: 'Datos base offline; confirma fuentes oficiales.', icon: 'exclamation-triangle' }
+  { text: 'Datos base actualizados; confirma fuentes oficiales.', icon: 'exclamation-triangle' }
 ]
 
 const enlacesA: LinkItem[] = [
   { label: 'Ayuntamiento de Écija', url: 'https://www.ecija.es/', icon: 'globe' },
   { label: 'Turismo de Écija', url: 'https://turismoecija.com/', icon: 'map' },
-  { label: 'AEMET — Predicción', url: 'https://www.aemet.es/es/eltiempo/prediccion/municipios/ecija-id41038', icon: 'cloud-sun' }
+  { label: 'AEMET — Predicción Écija', url: 'https://www.aemet.es/es/eltiempo/prediccion/municipios/ecija-id41039', icon: 'cloud-sun' }
 ]
 const enlacesB: LinkItem[] = [
-  { label: 'Mapa OpenStreetMap', url: 'https://www.openstreetmap.org/#map=15/37.542/-5.079', icon: 'signpost' },
-  { label: 'Listado Hermandades', url: '#/hermandades', icon: 'collection' },
-  { label: 'Tus Favoritas', url: '#/favoritos', icon: 'star' }
+  { label: 'Mapa OSM de Écija', url: 'https://www.openstreetmap.org/#map=15/37.542/-5.079', icon: 'signpost' },
+  { label: 'YouTube — Écija Comarcal TV', url: 'https://www.youtube.com/channel/UCiL_dz_QnquAtO5LjvW-How/live', icon: 'youtube' },
+  { label: 'Política de Privacidad', url: 'https://docs.google.com/document/d/e/2PACX-1vQPL4L2DYbna1ZOkkVLp6igOwxsjaF3G1QJLgrAo_CQY8hHMKMxRJiCSYGb79ktzNFPHKl9fvz8HlZP/pub', icon: 'shield-check' }
 ]
 
 function Bullet({ text, icon = 'dot' }: { text: string; icon?: string }) {
@@ -64,78 +66,85 @@ function LinkItemRow({ item }: { item: LinkItem }) {
 
 export default function About() {
   return (
-    <main className="about-plain container my-5" aria-labelledby="about-title">
-      <header className="mb-4">
-        <h1 id="about-title" className="about-plain-title">Semana Santa de Écija</h1>
-        <p className="lead about-plain-lead">Guía práctica, cultural y devocional para visitantes y cofrades.</p>
-      </header>
+    <>
+      <SeoHead
+        title="Acerca de · Semana Santa Écija"
+        description="Información útil, consejos y teléfonos de interés para disfrutar de la Semana Santa de Écija."
+        url="/acerca-de"
+      />
+      <main className="about-plain container my-5" aria-labelledby="about-title">
+        <header className="mb-4">
+          <h1 id="about-title" className="about-plain-title">Semana Santa de Écija</h1>
+          <p className="lead about-plain-lead">Guía práctica, cultural y devocional para visitantes y cofrades.</p>
+        </header>
 
-      <article className="about-article" aria-label="Contenido principal sobre la Semana Santa de Écija">
-        <section className="mb-5" aria-labelledby="sec-intro">
-          <h2 id="sec-intro" className="section-heading">Introducción</h2>
-          <p>
-            La Semana Santa de Écija combina patrimonio barroco, tradición y un clima de recogimiento que envuelve calles y plazas.
-            Cortejos elegantes, silencio en ciertos tramos y el cromatismo de hábitos e insignias la convierten en una vivencia singular.
-            La Carrera Oficial se organiza en torno a la Plaza de España ("El Salón"), eje donde confluyen hermandades y visitantes.
-          </p>
-          <p>
-            Esta aplicación facilita una consulta ágil de horarios, itinerarios aproximados y la marcación de hermandades favoritas
-            para tenerlas a mano durante los días de la semana mayor.
-          </p>
-        </section>
+        <article className="about-article" aria-label="Contenido principal sobre la Semana Santa de Écija">
+          <section className="mb-5" aria-labelledby="sec-intro">
+            <h2 id="sec-intro" className="section-heading">Introducción</h2>
+            <p>
+              La Semana Santa de Écija combina patrimonio barroco, tradición y un clima de recogimiento que envuelve calles y plazas.
+              Cortejos elegantes, silencio en ciertos tramos y el cromatismo de hábitos e insignias la convierten en una vivencia singular.
+              La Carrera Oficial se organiza en torno a la Plaza de España ("El Salón"), eje donde confluyen hermandades y visitantes.
+            </p>
+            <p>
+              Esta aplicación facilita una consulta ágil de horarios, itinerarios aproximados y la marcación de hermandades favoritas
+              para tenerlas a mano durante los días de la semana mayor.
+            </p>
+          </section>
 
-        <section className="mb-5" aria-labelledby="sec-puntos">
-          <h2 id="sec-puntos" className="section-heading">Puntos de interés</h2>
-          <ul className="about-bullets list-unstyled">
-            {puntosInteres.map(p => <Bullet key={p} text={p} icon="pin-map" />)}
-          </ul>
-        </section>
+          <section className="mb-5" aria-labelledby="sec-puntos">
+            <h2 id="sec-puntos" className="section-heading">Puntos de interés</h2>
+            <ul className="about-bullets list-unstyled">
+              {puntosInteres.map(p => <Bullet key={p} text={p} icon="pin-map" />)}
+            </ul>
+          </section>
 
-        <section className="mb-5" aria-labelledby="sec-consejos">
-          <h2 id="sec-consejos" className="section-heading">Consejos útiles</h2>
-          <ul className="about-bullets list-unstyled">
-            {consejos.map(c => <Bullet key={c.text} text={c.text} icon={c.icon} />)}
-          </ul>
-        </section>
+          <section className="mb-5" aria-labelledby="sec-consejos">
+            <h2 id="sec-consejos" className="section-heading">Consejos útiles</h2>
+            <ul className="about-bullets list-unstyled">
+              {consejos.map(c => <Bullet key={c.text} text={c.text} icon={c.icon} />)}
+            </ul>
+          </section>
 
-        <section className="mb-5" aria-labelledby="sec-logistica">
-          <h2 id="sec-logistica" className="section-heading">Logística para visitantes</h2>
-          <p>
-            Aparcamiento periférico recomendado en jornadas de máxima afluencia. El centro histórico registra cortes escalonados;
-            conviene prever rutas alternativas. La restauración incrementa ocupación en mediodía y primeras horas de la noche: reserva
-            o acude con margen.
-          </p>
-          <p>
-            En fotografía evita el uso de flash directo a imágenes o pasos. Mantén silencio en zonas de recogimiento y protege los
-            itinerarios dejando libre el recorrido. Lleva batería externa: la consulta frecuente de mapas y favoritos consume energía.
-          </p>
-        </section>
+          <section className="mb-5" aria-labelledby="sec-logistica">
+            <h2 id="sec-logistica" className="section-heading">Logística para visitantes</h2>
+            <p>
+              Aparcamiento periférico recomendado en jornadas de máxima afluencia. El centro histórico registra cortes escalonados;
+              conviene prever rutas alternativas. La restauración incrementa ocupación en mediodía y primeras horas de la noche: reserva
+              o acude con margen.
+            </p>
+            <p>
+              En fotografía evita el uso de flash directo a imágenes o pasos. Mantén silencio en zonas de recogimiento y protege los
+              itinerarios dejando libre el recorrido. Lleva batería externa: la consulta frecuente de mapas y favoritos consume energía.
+            </p>
+          </section>
 
-        <section className="mb-5" aria-labelledby="sec-app">
-          <h2 id="sec-app" className="section-heading">Sobre la aplicación</h2>
-          <ul className="about-bullets list-unstyled">
-            {appFeatures.map(f => <Bullet key={f.text} text={f.text} icon={f.icon} />)}
-          </ul>
-        </section>
+          <section className="mb-5" aria-labelledby="sec-app">
+            <h2 id="sec-app" className="section-heading">Sobre la aplicación</h2>
+            <ul className="about-bullets list-unstyled">
+              {appFeatures.map(f => <Bullet key={f.text} text={f.text} icon={f.icon} />)}
+            </ul>
+          </section>
 
-        <section className="mb-5" aria-labelledby="sec-enlaces">
-          <h2 id="sec-enlaces" className="section-heading">Enlaces de interés</h2>
-          <div className="row g-4 about-links">
-            <div className="col-md-6">
-              <ul className="list-unstyled m-0">
-                {enlacesA.map(e => <LinkItemRow key={e.url} item={e} />)}
-              </ul>
+          <section className="mb-5" aria-labelledby="sec-enlaces">
+            <h2 id="sec-enlaces" className="section-heading">Enlaces de interés</h2>
+            <div className="row g-4 about-links">
+              <div className="col-md-6">
+                <ul className="list-unstyled m-0">
+                  {enlacesA.map(e => <LinkItemRow key={e.url} item={e} />)}
+                </ul>
+              </div>
+              <div className="col-md-6">
+                <ul className="list-unstyled m-0">
+                  {enlacesB.map(e => <LinkItemRow key={e.url} item={e} />)}
+                </ul>
+              </div>
             </div>
-            <div className="col-md-6">
-              <ul className="list-unstyled m-0">
-                {enlacesB.map(e => <LinkItemRow key={e.url} item={e} />)}
-              </ul>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <hr className="about-divider" />
-      </article>
-    </main>
+          <hr className="about-divider" />
+        </article>
+      </main>
+    </>
   )
 }
