@@ -22,7 +22,6 @@ const consejos = [
 const appFeatures = [
   { text: 'Favoritos persistentes en tu dispositivo.', icon: 'star' },
   { text: 'Consulta de itinerarios y horarios detallados.', icon: 'calendar' },
-  { text: 'Galería fotográfica actualizada.', icon: 'images' },
   { text: 'Interfaz adaptada para consulta rápida.', icon: 'phone' },
   { text: 'Datos base actualizados; confirma fuentes oficiales.', icon: 'exclamation-triangle' }
 ]
