@@ -9,9 +9,11 @@ import { colors } from '@mobile/theme/colors'
 import { LinearGradient } from 'expo-linear-gradient'
 import { getEscudoSource } from '@mobile/utils/escudos'
 import { getHeaderSource } from '@mobile/utils/headers'
+import { parseNazarenoColors } from '@mobile/utils/nazarenoColors'
 
 import AlertBanner from '@mobile/components/AlertBanner'
 import UserGalleryModal from '@mobile/components/UserGalleryModal'
+import NazarenoIcon from '@mobile/components/NazarenoIcon'
 
 export default function HermandadDetail() {
   const route = useRoute<DetailRouteProp>()
@@ -87,6 +89,11 @@ export default function HermandadDetail() {
     return unique
   }, [hermandad.colors])
 
+  const nazarenoColors = useMemo(() => {
+    const tunicaText = hermandad.pasos?.[0]?.tunica_nazarenos || ''
+    return parseNazarenoColors(hermandad.colors, tunicaText)
+  }, [hermandad.colors, hermandad.pasos])
+
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -158,6 +165,15 @@ export default function HermandadDetail() {
               </View>
             </View>
           )}
+          {/* Nazareno con colores de la hermandad */}
+          <View style={styles.nazarenoContainer}>
+            <NazarenoIcon
+              tunicColor={nazarenoColors.tunic}
+              hoodColor={nazarenoColors.hood}
+              capeColor={nazarenoColors.cape}
+              size={44}
+            />
+          </View>
           {/* Escudo superpuesto */}
           <View style={styles.shieldContainer}>
             {(() => {
@@ -478,7 +494,7 @@ const styles = StyleSheet.create({
   galleryPillBtn: { flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'rgba(0,0,0,0.35)', paddingHorizontal: 14, paddingVertical: 10, borderRadius: 22 },
   galleryPillText: { fontSize: 13, fontWeight: '600', color: colors.textLight, letterSpacing: 0.3 },
 
-  heroBottom: { position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 20, paddingBottom: 20, zIndex: 10 },
+  heroBottom: { position: 'absolute', bottom: 0, left: 0, right: 0, paddingLeft: 90, paddingRight: 20, paddingBottom: 20, zIndex: 10 },
   heroTitle: { fontSize: 28, fontWeight: '800', color: colors.textLight, marginBottom: 8, textShadowColor: 'rgba(0,0,0,0.75)', textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 4 },
   dayChip: { alignSelf: 'flex-start', backgroundColor: colors.secondary, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, elevation: 2 },
   dayChipText: { color: '#ffffff', fontSize: 13, fontWeight: '700', letterSpacing: 0.5, textTransform: 'uppercase' },
@@ -486,6 +502,7 @@ const styles = StyleSheet.create({
   heroCenterPlaceholder: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', zIndex: 5 },
   placeholderText: { marginTop: 8, color: 'rgba(255,255,255,0.6)', fontSize: 14, fontWeight: '500' },
 
+  nazarenoContainer: { position: 'absolute', left: 16, bottom: -30, width: 64, height: 64, borderRadius: 32, backgroundColor: colors.surface, justifyContent: 'center', alignItems: 'center', elevation: 6, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 6, shadowOffset: { width: 0, height: 3 }, borderWidth: 2, borderColor: colors.surface, zIndex: 20 },
   shieldContainer: { position: 'absolute', right: 24, bottom: -30, width: 90, height: 90, borderRadius: 45, backgroundColor: colors.surface, justifyContent: 'center', alignItems: 'center', elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 8, shadowOffset: { width: 0, height: 4 }, borderWidth: 3, borderColor: colors.surface, zIndex: 20 },
   shield: { width: 70, height: 70 },
   shieldPlaceholder: { width: '100%', height: '100%', backgroundColor: '#4b0082', borderRadius: 45, justifyContent: 'center', alignItems: 'center' },

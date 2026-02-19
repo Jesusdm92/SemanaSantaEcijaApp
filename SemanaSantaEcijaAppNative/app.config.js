@@ -2,7 +2,7 @@ export default {
   "expo": {
     "name": "Cruz de Guía Écija",
     "slug": "cruz-de-guia-ecija",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon-optimized.png",
     "userInterfaceStyle": "automatic",
