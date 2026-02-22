@@ -1,0 +1,345 @@
+{
+    "name": "Semana Santa Écija - Control de Incidencias + Push",
+    "nodes": [
+        {
+            "parameters": {
+                "updates": [
+                    "message"
+                ]
+            },
+            "id": "telegram-trigger-node",
+            "name": "Telegram Trigger",
+            "type": "n8n-nodes-base.telegramTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "credentials": {
+                "telegramApi": {
+                    "id": "{{TELEGRAM_CREDENTIAL_ID}}",
+                    "name": "Telegram Credential"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "url": "=https://api.github.com/gists/68ec076a0229259df23eb5f073ec8c31",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth",
+                "options": {}
+            },
+            "id": "get-gist-node",
+            "name": "Get Current Gist",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.1,
+            "position": [
+                450,
+                300
+            ],
+            "credentials": {
+                "httpHeaderAuth": {
+                    "id": "{{GITHUB_CREDENTIAL_ID}}",
+                    "name": "GitHub Credential"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "// Obtener mensaje de Telegram\nconst msg = $('Telegram Trigger').item.json.message.text.toLowerCase();\nconst gistFile = $('Get Current Gist').item.json.files['status.json'];\nconst data = JSON.parse(gistFile.content);\n\n// Diccionario de IDs de hermandades\nconst hermaIds = {\n  'olivo': '75910',\n  'borriquita': '26978',\n  'cautivo': '57188',\n  'yedra': '68445',\n  'expiracion': '1277',\n  'sangil': '78066',\n  'confalon': '27120',\n  'sangre': '64425',\n  'mortaja': '88787',\n  'piedad': '83972',\n  'sanjuan': '47463',\n  'silencio': '34963',\n  'sinsoga': '77415',\n  'soledad': '43437',\n  'resucitado': '9329'\n};\n\nlet response = '';\nlet pushType = null;\nlet pushTitle = '';\nlet pushBody = '';\n\nconst parts = msg.split(' ');\nconst cmd = parts[0];\n\n// Procesar comandos\nif (cmd === '/aviso' || cmd === '/peligro' || cmd === '/info') {\n  const hermandadName = parts[1];\n  const id = hermaIds[hermandadName];\n  \n  if (!id) {\n    return { json: { \n      skip: true, \n      text: '❌ Hermandad no reconocida. Usa: olivo, borriquita, cautivo, yedra, expiracion, sangil, confalon, sangre, mortaja, piedad, sanjuan, silencio, sinsoga, soledad, resucitado' \n    }};\n  }\n  \n  const type = cmd === '/peligro' ? 'danger' : (cmd === '/info' ? 'info' : 'warning');\n  const title = cmd === '/peligro' ? '🔴 INCIDENCIA GRAVE' : (cmd === '/info' ? 'ℹ️ Información' : '⚠️ Aviso');\n  const message = parts.slice(2).join(' ');\n  \n  data.alerts[id] = {\n    isActive: true,\n    type: type,\n    title: title,\n    message: message,\n    timestamp: new Date().toISOString()\n  };\n  \n  // Configurar push notification\n  pushType = type;\n  pushTitle = title;\n  pushBody = `${hermandadName.toUpperCase()}: ${message}`;\n  \n  response = `✅ Alerta publicada para ${hermandadName.toUpperCase()}`;\n  \n} else if (cmd === '/ok') {\n  const hermandadName = parts[1];\n  const id = hermaIds[hermandadName];\n  \n  if (id && data.alerts[id]) {\n    data.alerts[id].isActive = false;\n    response = `✅ Alerta desactivada para ${hermandadName.toUpperCase()}`;\n  } else {\n    response = '❌ No hay alerta activa para esa hermandad';\n  }\n  \n} else if (cmd === '/global') {\n  const message = parts.slice(1).join(' ');\n  data.global = {\n    active: true,\n    message: message,\n    type: 'warning'\n  };\n  \n  // Push global\n  pushType = 'global';\n  pushTitle = '🌐 Aviso Global - Semana Santa Écija';\n  pushBody = message;\n  \n  response = '✅ Aviso Global activado';\n  \n} else if (cmd === '/global_ok') {\n  data.global.active = false;\n  response = '✅ Aviso Global desactivado';\n  \n} else {\n  return { json: { \n    skip: true, \n    text: 'Comandos disponibles:\\n/aviso [hermandad] [mensaje]\\n/peligro [hermandad] [mensaje]\\n/info [hermandad] [mensaje]\\n/ok [hermandad]\\n/global [mensaje]\\n/global_ok' \n  }};\n}\n\n// Actualizar timestamp\ndata.meta.lastUpdated = new Date().toISOString();\n\nreturn { \n  json: { \n    body: { \n      files: { \n        'status.json': { \n          content: JSON.stringify(data, null, 2) \n        } \n      } \n    },\n    text: response,\n    pushType: pushType,\n    pushTitle: pushTitle,\n    pushBody: pushBody\n  }\n};"
+            },
+            "id": "logic-processor-node",
+            "name": "Logic Processor",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "method": "PATCH",
+                "url": "=https://api.github.com/gists/68ec076a0229259df23eb5f073ec8c31",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth",
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "={{ $json.body }}",
+                "options": {}
+            },
+            "id": "update-gist-node",
+            "name": "Update Gist",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.1,
+            "position": [
+                850,
+                300
+            ],
+            "credentials": {
+                "httpHeaderAuth": {
+                    "id": "{{GITHUB_CREDENTIAL_ID}}",
+                    "name": "GitHub Credential"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "string": [
+                        {
+                            "value1": "={{ $('Logic Processor').item.json.pushType }}",
+                            "operation": "isNotEmpty"
+                        }
+                    ]
+                }
+            },
+            "id": "check-push-needed-node",
+            "name": "Push Needed?",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 1,
+            "position": [
+                1050,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "// Determinar qué columna de preferencia filtrar según el tipo de alerta\nconst pushType = $('Logic Processor').item.json.pushType;\n\nlet filterColumn = 'prefs_warning';\nif (pushType === 'danger') filterColumn = 'prefs_danger';\nelse if (pushType === 'info') filterColumn = 'prefs_info';\nelse if (pushType === 'global') filterColumn = 'prefs_global';\n\nreturn { json: { filterColumn } };"
+            },
+            "id": "build-filter-node",
+            "name": "Build Filter",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1250,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "url": "=https://jfsiilqqgytdkslxwsmk.supabase.co/rest/v1/push_tokens?select=expo_push_token&{{ $json.filterColumn }}=eq.true",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth",
+                "options": {}
+            },
+            "id": "fetch-tokens-node",
+            "name": "Fetch Tokens from Supabase",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.1,
+            "position": [
+                1450,
+                200
+            ],
+            "credentials": {
+                "httpHeaderAuth": {
+                    "id": "{{SUPABASE_CREDENTIAL_ID}}",
+                    "name": "Supabase Service Key"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "// Construir mensajes para Expo Push API\n// $input.all() devuelve todos los tokens de Supabase\nconst tokens = $input.all().map(item => item.json.expo_push_token).filter(Boolean);\n\nconst pushTitle = $('Logic Processor').item.json.pushTitle;\nconst pushBody = $('Logic Processor').item.json.pushBody;\n\nif (tokens.length === 0) {\n  return { json: { skip: true, tokenCount: 0 } };\n}\n\n// Expo Push API acepta hasta 100 mensajes por request\n// Dividir en chunks si hay muchos tokens\nconst chunks = [];\nfor (let i = 0; i < tokens.length; i += 100) {\n  chunks.push(tokens.slice(i, i + 100));\n}\n\nconst allMessages = chunks.map(chunk => ({\n  messages: chunk.map(token => ({\n    to: token,\n    sound: 'default',\n    title: pushTitle,\n    body: pushBody,\n    priority: 'high',\n  }))\n}));\n\n// Devolver el primer chunk (para la mayoría de apps será suficiente)\nreturn { json: { messages: allMessages[0].messages, tokenCount: tokens.length } };"
+            },
+            "id": "build-push-messages-node",
+            "name": "Build Push Messages",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1650,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://exp.host/--/api/v2/push/send",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json"
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "={{ JSON.stringify($json.messages) }}",
+                "options": {}
+            },
+            "id": "send-push-node",
+            "name": "Send Push via Expo",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.1,
+            "position": [
+                1850,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "text": "={{ $('Logic Processor').item.json.text + ' (📲 Push enviado a ' + $('Build Push Messages').item.json.tokenCount + ' dispositivos)' }}",
+                "additionalFields": {}
+            },
+            "id": "telegram-reply-push-node",
+            "name": "Telegram Reply (con Push)",
+            "type": "n8n-nodes-base.telegram",
+            "typeVersion": 1,
+            "position": [
+                2050,
+                200
+            ],
+            "credentials": {
+                "telegramApi": {
+                    "id": "{{TELEGRAM_CREDENTIAL_ID}}",
+                    "name": "Telegram Credential"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "text": "={{ $('Logic Processor').item.json.text }}",
+                "additionalFields": {}
+            },
+            "id": "telegram-reply-node",
+            "name": "Telegram Reply (sin Push)",
+            "type": "n8n-nodes-base.telegram",
+            "typeVersion": 1,
+            "position": [
+                1250,
+                450
+            ],
+            "credentials": {
+                "telegramApi": {
+                    "id": "{{TELEGRAM_CREDENTIAL_ID}}",
+                    "name": "Telegram Credential"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Telegram Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Get Current Gist",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Current Gist": {
+            "main": [
+                [
+                    {
+                        "node": "Logic Processor",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Logic Processor": {
+            "main": [
+                [
+                    {
+                        "node": "Update Gist",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Update Gist": {
+            "main": [
+                [
+                    {
+                        "node": "Push Needed?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Push Needed?": {
+            "main": [
+                [
+                    {
+                        "node": "Build Filter",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Telegram Reply (sin Push)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Build Filter": {
+            "main": [
+                [
+                    {
+                        "node": "Fetch Tokens from Supabase",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Fetch Tokens from Supabase": {
+            "main": [
+                [
+                    {
+                        "node": "Build Push Messages",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Build Push Messages": {
+            "main": [
+                [
+                    {
+                        "node": "Send Push via Expo",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Send Push via Expo": {
+            "main": [
+                [
+                    {
+                        "node": "Telegram Reply (con Push)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "settings": {
+        "executionOrder": "v1"
+    },
+    "staticData": null,
+    "tags": [],
+    "triggerCount": 1,
+    "updatedAt": "2026-02-17T14:30:00.000Z",
+    "versionId": "2"
+}

@@ -8,12 +8,12 @@ interface LinkItem { label: string; url: string; icon: string }
 const enlacesA: LinkItem[] = [
   { label: 'Ayuntamiento de Écija', url: 'https://www.ecija.es/', icon: 'business-outline' },
   { label: 'Turismo de Écija', url: 'https://turismoecija.com/', icon: 'map-outline' },
-  { label: 'AEMET — Predicción Écija', url: 'https://www.aemet.es/es/eltiempo/prediccion/municipios/ecija-id41038', icon: 'cloud-outline' },
+  { label: 'AEMET — Predicción Écija', url: 'https://www.aemet.es/es/eltiempo/prediccion/municipios/ecija-id41039', icon: 'cloud-outline' },
 ]
 const enlacesB: LinkItem[] = [
   { label: 'Mapa OSM de Écija', url: 'https://www.openstreetmap.org/#map=15/37.542/-5.079', icon: 'navigate-outline' },
-  { label: 'Listado de Hermandades', url: '#/hermandades', icon: 'albums-outline' },
-  { label: 'Tus Favoritas', url: '#/favoritos', icon: 'star-outline' },
+  { label: 'YouTube — Écija Comarcal TV', url: 'https://www.youtube.com/channel/UCiL_dz_QnquAtO5LjvW-How/live', icon: 'logo-youtube' },
+  { label: 'Política de Privacidad', url: 'https://docs.google.com/document/d/e/2PACX-1vQPL4L2DYbna1ZOkkVLp6igOwxsjaF3G1QJLgrAo_CQY8hHMKMxRJiCSYGb79ktzNFPHKl9fvz8HlZP/pub', icon: 'shield-checkmark-outline' },
 ]
 
 function openLink(url: string) {
@@ -30,14 +30,11 @@ export default function About() {
 
         <SectionCard icon="book-outline" title="Introducción">
           <Text style={styles.paragraph}>
-            La Semana Santa de Écija combina patrimonio barroco, tradición y un profundo clima de recogimiento. Sus
-            cortejos destacan por la elegancia, el silencio respetuoso en ciertos tramos y el colorido de hábitos y cirios.
-            La Carrera Oficial se sitúa en torno a la Plaza de España — "El Salón", corazón neurálgico donde confluyen
-            miles de miradas cada jornada.
+            La Semana Santa de Écija es una de las celebraciones más señeras de Andalucía, declarada Fiesta de Interés Turístico Nacional.
+            Su patrimonio barroco y la sobriedad de sus cortejos crean una atmósfera única por las calles de la "Ciudad de las Torres".
           </Text>
           <Text style={styles.paragraph}>
-            Esta aplicación te ayuda a planificar horarios, seguir itinerarios aproximados y marcar hermandades favoritas para
-            tenerlas siempre a mano durante la semana.
+            Esta aplicación nace para ser la compañera del cofrade durante la semana mayor. Ofrece horarios e itinerarios detallados de cada Hermandad, así como un sistema de avisos e incidencias en tiempo real para estar informado de cualquier cambio o noticia relevante durante las procesiones.
           </Text>
         </SectionCard>
 
@@ -55,7 +52,7 @@ export default function About() {
 
         <SectionCard icon="bulb-outline" title="Consejos para disfrutar">
           <Bullet text="Llega con antelación a los puntos más concurridos." icon="time-outline" />
-            <Bullet text="Respeta los cortejos y sigue indicaciones de organización." icon="people-outline" />
+          <Bullet text="Respeta los cortejos y sigue indicaciones de organización." icon="people-outline" />
           <Bullet text="Hidrátate y usa calzado cómodo (recorridos largos)." icon="walk-outline" />
           <Bullet text="Establece un punto de encuentro si vas en grupo." icon="alert-circle-outline" />
           <Bullet text="Comprueba la meteorología antes de salir." icon="cloudy-outline" />
@@ -69,15 +66,15 @@ export default function About() {
           </Text>
           <Text style={styles.paragraph}>
             Para fotografía: evita flashes directos a imágenes y respeta la línea de paso. Mantén silencio en tramos de recogimiento.
-            Lleva batería externa: la consulta de itinerarios y mapas consume energía.
           </Text>
         </SectionCard>
 
         <SectionCard icon="apps-outline" title="Sobre la aplicación">
           <Bullet text="Favoritos persistentes en el dispositivo." icon="star-outline" />
-          <Bullet text="Itinerario con visualización aproximada en mapa." icon="map-outline" />
+          <Bullet text="Consulta de itinerarios y horarios detallados." icon="calendar-outline" />
+          <Bullet text="Galería fotográfica actualizada." icon="images-outline" />
           <Bullet text="Diseño adaptado y limpio para consulta rápida." icon="phone-portrait-outline" />
-          <Bullet text="Datos base offline; comprueba siempre fuentes oficiales." icon="warning-outline" />
+          <Bullet text="Datos base actualizados; comprueba fuentes oficiales." icon="warning-outline" />
         </SectionCard>
 
         <SectionCard icon="link-outline" title="Enlaces de interés">

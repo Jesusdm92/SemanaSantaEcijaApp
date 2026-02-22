@@ -7,6 +7,18 @@ import SplashScreen from './src/screens/SplashScreen'
 import HermandadDetail from './src/screens/HermandadDetail'
 import { TabsNavigator } from './src/navigation/TabsNavigator'
 import { HermandadesProvider } from './src/context/HermandadesContext'
+import {
+  configureForegroundHandler,
+  registerForNotifications,
+  getExpoPushToken,
+  registerPushToken,
+  savePushTokenLocally,
+  syncPreferencesToSupabase,
+} from './src/services/notificationService'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+// Configurar handler de notificaciones en primer plano
+configureForegroundHandler()
 
 // Mantener la splash nativa visible hasta que esté lista
 ExpoSplashScreen.preventAutoHideAsync()
@@ -19,8 +31,26 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        // Aquí puedes cargar recursos, fuentes, etc.
-        // Por ahora solo esperamos un momento
+        // Solicitar permisos de notificación
+        const granted = await registerForNotifications()
+
+        // Si los permisos fueron concedidos, registrar push token en Supabase
+        if (granted) {
+          const pushToken = await getExpoPushToken()
+          if (pushToken) {
+            await savePushTokenLocally(pushToken)
+            await registerPushToken(pushToken)
+
+            // Sincronizar preferencias guardadas con Supabase
+            const PREFS_KEY = 'SS_ECIJA_NOTIFICATION_PREFS'
+            const savedPrefs = await AsyncStorage.getItem(PREFS_KEY)
+            if (savedPrefs) {
+              const prefs = JSON.parse(savedPrefs)
+              await syncPreferencesToSupabase(pushToken, prefs)
+            }
+          }
+        }
+
         await new Promise(resolve => setTimeout(resolve, 100))
       } catch (e) {
         console.warn(e)

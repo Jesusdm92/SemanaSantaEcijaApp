@@ -9,8 +9,11 @@ import { colors } from '@mobile/theme/colors'
 import { LinearGradient } from 'expo-linear-gradient'
 import { getEscudoSource } from '@mobile/utils/escudos'
 import { getHeaderSource } from '@mobile/utils/headers'
+import { parseNazarenoColors } from '@mobile/utils/nazarenoColors'
 
 import AlertBanner from '@mobile/components/AlertBanner'
+import UserGalleryModal from '@mobile/components/UserGalleryModal'
+import NazarenoIcon from '@mobile/components/NazarenoIcon'
 
 export default function HermandadDetail() {
   const route = useRoute<DetailRouteProp>()
@@ -18,6 +21,7 @@ export default function HermandadDetail() {
   const { getHermandadById, toggleFavorite, loading, incidencias } = useHermandades()
   const id = route.params?.id
   const [expandedDesc, setExpandedDesc] = useState(false)
+  const [galleryVisible, setGalleryVisible] = useState(false)
   if (loading) return <Text style={styles.statusMsg}>Cargando...</Text>
   if (typeof id !== 'number') return <Text style={styles.statusMsg}>Sin parámetro</Text>
   const hermandad = getHermandadById(id)
@@ -28,11 +32,25 @@ export default function HermandadDetail() {
   const showAlert = incidencia && incidencia.isActive
 
   const headerSource = useMemo(() => {
-    if (!hermandad.mainImage) return null
-    // If it's a URL (http/https), use it directly
-    if (hermandad.mainImage.startsWith('http')) return { uri: hermandad.mainImage }
-    // Otherwise, look it up in the map
-    return getHeaderSource(hermandad.mainImage)
+    const imageIdentifier = hermandad.mainImage
+    if (!imageIdentifier) return null
+
+    // 1. Remote URL check (http/https)
+    const isRemote = imageIdentifier.startsWith('http://') || imageIdentifier.startsWith('https://')
+    if (isRemote) {
+      return { uri: imageIdentifier }
+    }
+
+    // 2. Local Asset lookup
+    const localAsset = getHeaderSource(imageIdentifier)
+    if (localAsset) {
+      return localAsset
+    }
+
+    // 3. Fallback / Unresolved
+    // If it's not a URL and not in our local map, it's an invalid identifier
+    console.warn(`[HermandadDetail] Could not resolve image identifier: "${imageIdentifier}"`)
+    return null
   }, [hermandad.mainImage])
 
   const duration = useMemo(() => {
@@ -71,6 +89,11 @@ export default function HermandadDetail() {
     return unique
   }, [hermandad.colors])
 
+  const nazarenoColors = useMemo(() => {
+    const tunicaText = hermandad.pasos?.[0]?.tunica_nazarenos || ''
+    return parseNazarenoColors(hermandad.colors, tunicaText)
+  }, [hermandad.colors, hermandad.pasos])
+
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -98,9 +121,15 @@ export default function HermandadDetail() {
                 <TouchableOpacity accessibilityLabel="Volver" onPress={() => navigation.goBack()} style={styles.circleBtn}>
                   <Ionicons name="arrow-back" size={24} color={colors.textLight} />
                 </TouchableOpacity>
-                <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
-                  <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
-                </TouchableOpacity>
+                <View style={styles.heroTopRight}>
+                  <TouchableOpacity accessibilityLabel="Mi galería de fotos" onPress={() => setGalleryVisible(true)} style={styles.galleryPillBtn}>
+                    <Ionicons name="camera-outline" size={18} color={colors.textLight} />
+                    <Text style={styles.galleryPillText}>Galería</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
+                    <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
+                  </TouchableOpacity>
+                </View>
               </View>
               <View style={styles.heroBottom}>
                 <Text style={styles.heroTitle}>{hermandad.name}</Text>
@@ -116,9 +145,15 @@ export default function HermandadDetail() {
                 <TouchableOpacity accessibilityLabel="Volver" onPress={() => navigation.goBack()} style={styles.circleBtn}>
                   <Ionicons name="arrow-back" size={24} color={colors.textLight} />
                 </TouchableOpacity>
-                <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
-                  <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
-                </TouchableOpacity>
+                <View style={styles.heroTopRight}>
+                  <TouchableOpacity accessibilityLabel="Mi galería de fotos" onPress={() => setGalleryVisible(true)} style={styles.galleryPillBtn}>
+                    <Ionicons name="camera-outline" size={18} color={colors.textLight} />
+                    <Text style={styles.galleryPillText}>Galería</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity accessibilityLabel={hermandad.isFavorite ? 'Quitar de favoritas' : 'Añadir a favoritas'} onPress={() => toggleFavorite(hermandad.id)} style={styles.circleBtn}>
+                    <Ionicons name={hermandad.isFavorite ? 'star' : 'star-outline'} size={24} color={colors.secondary} />
+                  </TouchableOpacity>
+                </View>
               </View>
               <View style={styles.heroCenterPlaceholder}>
                 <Ionicons name="images-outline" size={48} color={'rgba(255,255,255,0.5)'} />
@@ -130,6 +165,15 @@ export default function HermandadDetail() {
               </View>
             </View>
           )}
+          {/* Nazareno con colores de la hermandad */}
+          <View style={styles.nazarenoContainer}>
+            <NazarenoIcon
+              tunicColor={nazarenoColors.tunic}
+              hoodColor={nazarenoColors.hood}
+              capeColor={nazarenoColors.cape}
+              size={44}
+            />
+          </View>
           {/* Escudo superpuesto */}
           <View style={styles.shieldContainer}>
             {(() => {
@@ -149,7 +193,6 @@ export default function HermandadDetail() {
           </View>
         </View>
 
-        {/* Alerta de Incidencia en Tiempo Real */}
         {showAlert && incidencia && (
           <AlertBanner
             type={incidencia.type}
@@ -409,6 +452,14 @@ export default function HermandadDetail() {
 
         <Text style={styles.disclaimer}>Datos orientativos. Verifica horarios oficiales.</Text>
       </ScrollView>
+
+      {/* Galería Personal */}
+      <UserGalleryModal
+        visible={galleryVisible}
+        onClose={() => setGalleryVisible(false)}
+        hermandadId={hermandad.id}
+        hermandadName={hermandad.name}
+      />
     </SafeAreaView>
   )
 }
@@ -438,9 +489,12 @@ const styles = StyleSheet.create({
   heroGradient: { ...StyleSheet.absoluteFillObject, zIndex: 1 },
 
   heroTopBar: { position: 'absolute', top: 0, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: Platform.select({ ios: 44, android: 44, default: 16 }), zIndex: 10 },
+  heroTopRight: { flexDirection: 'row', gap: 10 },
   circleBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.3)', justifyContent: 'center', alignItems: 'center' },
+  galleryPillBtn: { flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'rgba(0,0,0,0.35)', paddingHorizontal: 14, paddingVertical: 10, borderRadius: 22 },
+  galleryPillText: { fontSize: 13, fontWeight: '600', color: colors.textLight, letterSpacing: 0.3 },
 
-  heroBottom: { position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 20, paddingBottom: 20, zIndex: 10 },
+  heroBottom: { position: 'absolute', bottom: 0, left: 0, right: 0, paddingLeft: 90, paddingRight: 20, paddingBottom: 20, zIndex: 10 },
   heroTitle: { fontSize: 28, fontWeight: '800', color: colors.textLight, marginBottom: 8, textShadowColor: 'rgba(0,0,0,0.75)', textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 4 },
   dayChip: { alignSelf: 'flex-start', backgroundColor: colors.secondary, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, elevation: 2 },
   dayChipText: { color: '#ffffff', fontSize: 13, fontWeight: '700', letterSpacing: 0.5, textTransform: 'uppercase' },
@@ -448,6 +502,7 @@ const styles = StyleSheet.create({
   heroCenterPlaceholder: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', zIndex: 5 },
   placeholderText: { marginTop: 8, color: 'rgba(255,255,255,0.6)', fontSize: 14, fontWeight: '500' },
 
+  nazarenoContainer: { position: 'absolute', left: 16, bottom: -30, width: 64, height: 64, borderRadius: 32, backgroundColor: colors.surface, justifyContent: 'center', alignItems: 'center', elevation: 6, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 6, shadowOffset: { width: 0, height: 3 }, borderWidth: 2, borderColor: colors.surface, zIndex: 20 },
   shieldContainer: { position: 'absolute', right: 24, bottom: -30, width: 90, height: 90, borderRadius: 45, backgroundColor: colors.surface, justifyContent: 'center', alignItems: 'center', elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 8, shadowOffset: { width: 0, height: 4 }, borderWidth: 3, borderColor: colors.surface, zIndex: 20 },
   shield: { width: 70, height: 70 },
   shieldPlaceholder: { width: '100%', height: '100%', backgroundColor: '#4b0082', borderRadius: 45, justifyContent: 'center', alignItems: 'center' },

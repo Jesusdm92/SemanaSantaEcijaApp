@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { Hermandad } from '@/types/hermandad'
+import { getHermandades, type DataSource } from '@/services/hermandadesService'
 
 interface Ctx {
   hermandades: Hermandad[]
   loading: boolean
+  dataSource: DataSource | null
   getHermandades: () => Hermandad[]
   getHermandadById: (id: number | string) => Hermandad | undefined
   toggleFavorite: (id: number) => void
@@ -14,24 +16,21 @@ const HermandadesContext = createContext<Ctx | null>(null)
 export function HermandadesProvider({ children }: { children: React.ReactNode }) {
   const [hermandades, setHermandades] = useState<Hermandad[]>([])
   const [loading, setLoading] = useState(true)
+  const [dataSource, setDataSource] = useState<DataSource | null>(null)
 
   useEffect(() => {
     let cancelled = false
     const load = async () => {
       try {
-        const year = (import.meta as any).env?.VITE_AGENDA_YEAR || '2025'
-        const primaryUrl = `/data/hermandades-${year}.json`
-        const fallbackUrl = `/data/hermandades.json`
-
-        let res = await fetch(primaryUrl)
-        if (!res.ok) {
-          console.warn(`No se encontró ${primaryUrl}, usando fallback ${fallbackUrl}`)
-          res = await fetch(fallbackUrl)
-        }
-        const data: Hermandad[] = await res.json()
+        const { data, source } = await getHermandades()
         const favoriteIds: number[] = JSON.parse(localStorage.getItem('ss_ecija_favorites') || '[]')
         const synced = data.map(h => ({ ...h, isFavorite: favoriteIds.includes(h.id) }))
-        if (!cancelled) setHermandades(synced)
+        if (!cancelled) {
+          setHermandades(synced)
+          setDataSource(source)
+        }
+      } catch (e) {
+        console.error('Error cargando hermandades:', e)
       } finally {
         if (!cancelled) setLoading(false)
       }
@@ -40,7 +39,7 @@ export function HermandadesProvider({ children }: { children: React.ReactNode })
     return () => { cancelled = true }
   }, [])
 
-  const getHermandades = () => hermandades
+  const getHermandadesFn = () => hermandades
   const getHermandadById = (id: number | string) => hermandades.find(h => h.id === Number(id))
 
   const toggleFavorite = (id: number) => {
@@ -53,8 +52,8 @@ export function HermandadesProvider({ children }: { children: React.ReactNode })
   }
 
   const value = useMemo(
-    () => ({ hermandades, loading, getHermandades, getHermandadById, toggleFavorite }),
-    [hermandades, loading]
+    () => ({ hermandades, loading, dataSource, getHermandades: getHermandadesFn, getHermandadById, toggleFavorite }),
+    [hermandades, loading, dataSource]
   )
 
   return <HermandadesContext.Provider value={value}>{children}</HermandadesContext.Provider>

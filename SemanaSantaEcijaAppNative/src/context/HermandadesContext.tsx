@@ -4,14 +4,7 @@ import { Hermandad } from '@mobile/types/hermandad'
 
 import { Incidencia, IncidenciaType } from '../types/incidencias'
 import { useLiveStatus } from '../hooks/useLiveStatus'
-
-// Intentamos cargar el dataset 2025 si existe; si falla, caemos al base
-let hermandadesData: any
-try {
-  hermandadesData = require('../../assets/data/hermandades-2025.json')
-} catch (e) {
-  hermandadesData = require('../../assets/data/hermandades.json')
-}
+import { getHermandades as fetchHermandades, DataSource } from '../services/hermandadesService'
 
 interface HermandadesContextValue {
   hermandades: Hermandad[]
@@ -22,6 +15,9 @@ interface HermandadesContextValue {
   // Incidencias en tiempo real
   incidencias: Record<string, Incidencia>
   globalAlert?: { active: boolean; message: string; type: IncidenciaType }
+  liveStatusLoading: boolean
+  liveStatusError: Error | null
+  refetchLiveStatus: () => Promise<void>
 }
 
 const FAVORITES_KEY = 'SS_ECIJA_FAVORITES'
@@ -33,12 +29,13 @@ export const HermandadesProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [loading, setLoading] = useState(true)
 
   // Hook de estado en vivo (polling automático)
-  const { incidencias, globalAlert } = useLiveStatus()
+  const { incidencias, globalAlert, isLoading: liveStatusLoading, error: liveStatusError, refetch: refetchLiveStatus } = useLiveStatus()
 
   useEffect(() => {
     ; (async () => {
       try {
-        const baseRaw = (hermandadesData as Hermandad[])
+        const { data: baseRaw, source } = await fetchHermandades()
+        if (__DEV__) console.log(`📊 Datos cargados desde: ${source}`)
         const base: Hermandad[] = baseRaw.map(h => ({ ...h, isFavorite: !!h.isFavorite }))
         const favRaw = await AsyncStorage.getItem(FAVORITES_KEY)
         const favs: Record<string, boolean> = favRaw ? JSON.parse(favRaw) : {}
@@ -67,7 +64,18 @@ export const HermandadesProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }
 
   return (
-    <HermandadesContext.Provider value={{ hermandades, getHermandades, getHermandadById, toggleFavorite, loading, incidencias, globalAlert }}>
+    <HermandadesContext.Provider value={{
+      hermandades,
+      getHermandades,
+      getHermandadById,
+      toggleFavorite,
+      loading,
+      incidencias,
+      globalAlert,
+      liveStatusLoading,
+      liveStatusError,
+      refetchLiveStatus
+    }}>
       {children}
     </HermandadesContext.Provider>
   )

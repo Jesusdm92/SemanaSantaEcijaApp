@@ -2,7 +2,7 @@ export const headersMap: Record<string, any> = {
     // Batch 1
     'amor_header': require('../../assets/images/CabeceraHermandades/OlivoCabecera.jpg'),
     'borriquita_header': require('../../assets/images/CabeceraHermandades/borriquita_header.jpg'),
-    'cautivo_header': require('../../assets/images/CabeceraHermandades/cautivo_header.png'),
+    'cautivo_header': require('../../assets/images/CabeceraHermandades/cautivo_header.jpg'),
     'yedra_header': require('../../assets/images/CabeceraHermandades/yedra_header.jpg'),
     'expiracion_header': require('../../assets/images/CabeceraHermandades/expiracion.jpg'),
 

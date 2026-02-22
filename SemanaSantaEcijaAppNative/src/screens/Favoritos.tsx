@@ -5,12 +5,21 @@ import { HermandadCard } from '@mobile/components/HermandadCard'
 import { colors } from '@mobile/theme/colors'
 import { Hermandad } from '@mobile/types/hermandad'
 import { useTypedNavigation } from '@mobile/hooks/useTypedNavigation'
+import AlertBanner from '../components/AlertBanner'
+
 export default function Favoritos() {
   const navigation = useTypedNavigation()
-  const { hermandades } = useHermandades()
+  const { hermandades, globalAlert } = useHermandades()
   const favoritos = hermandades.filter((h: Hermandad) => h.isFavorite)
   return (
     <SafeAreaView style={styles.safe}>
+      {globalAlert?.active && (
+        <AlertBanner
+          type={globalAlert.type}
+          title="AVISO GENERAL"
+          message={globalAlert.message}
+        />
+      )}
       {favoritos.length === 0 ? (
         <Text style={styles.empty}>No tienes favoritos aún.</Text>
       ) : (
