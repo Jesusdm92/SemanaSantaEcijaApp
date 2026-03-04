@@ -1,0 +1,99 @@
+[
+  {
+    "id": 1,
+    "name": "Hermandad del Cautivo",
+    "day": "Lunes Santo",
+    "exitTime": "17:00",
+    "entryTime": "00:30",
+    "shieldUrl": "/assets/images/escudos/cautivo.png",
+    "mainImage": "/assets/images/main/cautivo.jpg",
+    "itinerary": [
+      "Parroquia de Santiago el Mayor",
+      "Calle Santiago",
+      "Plaza de España 'El Salón'",
+      "Carrera Oficial",
+      "Calle Cintería",
+      "Calle Espíritu Santo",
+      "Plaza de Santiago"
+    ],
+    "description": "La Real y Fervorosa Hermandad y Cofradía de Nazarenos de Nuestro Padre Jesús Cautivo y María Santísima de la Paz es una de las más queridas de la ciudad. Fundada en 1957, procesiona en la tarde del Lunes Santo.",
+    "colors": "Túnica y antifaz blancos con capa y cíngulo morados.",
+    "music": "Agrupación Musical Nuestro Padre Jesús Nazareno de la Fuensanta (Morón de la Frontera).",
+    "isFavorite": false
+  },
+  {
+    "id": 2,
+    "name": "Hermandad de la Sangre",
+    "day": "Martes Santo",
+    "exitTime": "18:30",
+    "entryTime": "01:00",
+    "shieldUrl": "/assets/images/escudos/sangre.png",
+    "mainImage": "/assets/images/main/sangre.jpg",
+    "itinerary": [
+      "Parroquia de Santa Cruz",
+      "Plaza Nuestra Señora del Valle",
+      "Calle Zayas",
+      "Carrera Oficial",
+      "Calle Mas y Prat",
+      "Plaza de Santa María",
+      "Calle Fernández Pintado"
+    ],
+    "description": "Conocida popularmente como 'El Silencio', la Pontificia, Real e Ilustre Hermandad y Cofradía del Santísimo Cristo de la Sangre y Nuestra Señora de los Dolores destaca por su recogimiento y solemnidad en la noche del Martes Santo.",
+    "colors": "Túnica y antifaz negros con cinturón de esparto.",
+    "music": "No lleva acompañamiento musical, solo un trío de capilla.",
+    "isFavorite": false,
+    "pasos": [
+      {
+        "nombre": "Santísimo Cristo de la Sangre"
+      },
+      {
+        "nombre": "Nuestra Señora de los Dolores"
+      }
+    ],
+    "numeroPasos": 2
+  },
+  {
+    "id": 3,
+    "name": "Hermandad de San Gil",
+    "day": "Miércoles Santo",
+    "exitTime": "19:00",
+    "entryTime": "02:00",
+    "shieldUrl": "/assets/images/escudos/sangil.png",
+    "mainImage": "/assets/images/main/sangil.jpg",
+    "itinerary": [
+      "Parroquia de San Gil Abad",
+      "Calle San Antonio",
+      "Plaza de Giles y Rubio",
+      "Carrera Oficial",
+      "Calle Garcilaso",
+      "Calle Puerta Osuna",
+      "Calle Arcipreste Aparicio"
+    ],
+    "description": "La Hermandad del Santísimo Cristo de la Salud y Nuestra Señora de los Dolores de la Parroquia de San Gil es una de las más antiguas de Écija, con una gran devoción popular hacia sus titulares.",
+    "colors": "Túnica y antifaz rojos con capa blanca.",
+    "music": "Banda de Cornetas y Tambores Santísimo Cristo de la Tres Caídas (Dos Hermanas).",
+    "isFavorite": false
+  },
+  {
+    "id": 4,
+    "name": "Hermandad del Confalón",
+    "day": "Viernes Santo",
+    "exitTime": "19:30",
+    "entryTime": "01:15",
+    "shieldUrl": "/assets/images/escudos/confalon.png",
+    "mainImage": "/assets/images/main/confalon.jpg",
+    "itinerary": [
+      "Iglesia de la Victoria",
+      "Plaza de la Victoria",
+      "Calle Santa Cruz",
+      "Carrera Oficial",
+      "Plaza de España 'El Salón'",
+      "Calle del Conde",
+      "Avenida Miguel de Cervantes"
+    ],
+    "description": "La Antigua y Real Hermandad del Santísimo Sacramento, Dulce Nombre de Jesús, y Cofradía de Nazarenos del Santo Entierro de Nuestro Señor Jesucristo y María Santísima de la Soledad, conocida como Confalón, es la cofradía oficial de la ciudad.",
+    "colors": "Túnica y antifaz azul oscuro con capa blanca.",
+    "music": "Banda de Música 'AMUECI' de Écija.",
+    "isFavorite": false
+  }
+]

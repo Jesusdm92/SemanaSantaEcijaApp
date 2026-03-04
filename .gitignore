@@ -1,0 +1,95 @@
+# Node
+node_modules/
+
+# Build outputs
+dist/
+.vite/
+*.tsbuildinfo
+
+# Avoid compiled JS clutter if someone runs tsc without noEmit
+src/**/*.js
+src/**/*.js.map
+
+# Expo
+.expo/
+expo-debug.log
+
+# Expo native app folder node_modules
+SemanaSantaEcijaAppNative/node_modules/
+
+# Android
+android/
+**/build/
+**/gradle/
+*.keystore
+
+# iOS
+ios/
+Pods/
+*.xcworkspace
+*.xcuserstate
+*.xcodeproj/xcuserdata/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Caches and temp
+.cache/
+.tmp/
+
+# Generated data/artifacts (optional — uncomment if you don't want to commit generated JSONs)
+# public/data/hermandades-2025.json
+# SemanaSantaEcijaAppNative/assets/data/hermandades-2025.json
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Keystore / signing
+*.jks
+*.keystore
+
+# Misc
+package-lock.json
+
+# Markdown generados temporalmente
+*.md
+!README.md
+
+# Carpetas de documentación y claves privadas (ignorar para repo público)
+docs/
+id_key
+deploy_final.sh
+google-services.json
+SemanaSantaEcijaAppNative/google-services.json
+n8n-workflow-incidencias.json
+recursos_play_store/
+
+# Scripts y archivos temporales de actualización (scrappings, mcp, sql)
+*.sql
+update_*.js
+update_*.mjs
+update_*.sql
+tools/scrape_*.mjs
+tools/read_*.js
+tools/apply_*.mjs
+tools/fix_*.mjs
+tools/test_*.js

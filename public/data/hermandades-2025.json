@@ -1,0 +1,905 @@
+[
+  {
+    "id": 75910,
+    "name": "Amor (El Olivo)",
+    "day": "Domingo de Ramos",
+    "exitTime": "15:45",
+    "entryTime": "23:15",
+    "shieldUrl": "/assets/images/escudos/amor-el-olivo.png",
+    "mainImage": "",
+    "itinerary": [
+      "Calle Alfonso Aragón 'Fofó'",
+      "Calle Pensamiento",
+      "Calle Violeta",
+      "Calle Pintor Fernando Briones",
+      "Boulevard José Silva Pirula",
+      "Avda. Miguel de Cervantes",
+      "Calle Emilio Castelar",
+      "Calle Jesús sin Soga",
+      "CARRERA OFICIAL",
+      "Plaza de Nuestra Señora del Valle",
+      "Calle Ramón Freire Gálvez",
+      "Calle José Canalejas",
+      "Calle Santa Florentina",
+      "Calle Sevilla",
+      "Calle Carreras",
+      "Calle Cavilla",
+      "Calle Carmelitas",
+      "Barrera D. Esteban Santos Peñas",
+      "Calle Marquesa",
+      "Calle del Conde",
+      "Hospitalito",
+      "Calle Santa Ángela de la Cruz",
+      "Puerta Osuna",
+      "Calle Cava",
+      "Calle Santiago",
+      "Calle Padilla",
+      "Avda. Miguel de Cervantes",
+      "Calle Amapola",
+      "Calle Nardo",
+      "Calle Alfonso Aragón Fofó",
+      "Calle Estatuto de Autonomía y Entrada a Parcela de la Hermandad."
+    ],
+    "description": "Sacramental del Glorioso Patriarca San José y Cofradía de Nazarenos de Ntro. Padre Jesús del Amor en su Prendimiento y María Stma. de la Concepción Fundación: 2017. Sede canónica: Capilla Santa Ángela de la Cruz. Salida/entrada: Parcela de la Hermandad en Calle Estatuto de Autonomía confluencia con Calle Cuatro de Diciembre. Fecha: 13 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Nuestro Padre Jesús del Amor",
+        "descripcion": "Imagen de Juan Manuel Miñarro (2011), primera talla de Cristo vivo basada en estudios anatómico-forenses sobre la Sábana Santa de Turín. Representa el momento del prendimiento en el Huerto de los Olivos, destacando la hematidrosis (sudoración de sangre).",
+        "tunica_nazarenos": "Túnica blanca de cola con cruz de Santiago en el pecho, antifaz blanco con escudo bordado, cinturón de esparto y sandalias color crema.",
+        "costaleros": 45
+      },
+      {
+        "nombre": "María Santísima de la Concepción",
+        "descripcion": "Dolorosa de candelero obra de Francisco Buiza (1974), de escuela neobarroca sevillana. Su advocación honra el histórico voto concepcionista de Écija de 1615. Actualmente no procesiona en Semana Santa, celebrando Rosario por el barrio en torno al 8 de diciembre.",
+        "tunica_nazarenos": "Túnica blanca de cola con cruz de Santiago en el pecho, antifaz blanco con escudo bordado, cinturón de esparto y sandalias color crema.",
+        "costaleros": null
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "18:00",
+      "entradaSantaCruz": "18:45"
+    },
+    "iglesia": "Capilla Santa Ángela de la Cruz",
+    "lugarSalidaEntrada": "Parcela de la Hermandad en Calle Estatuto de Autonomía confluencia con Calle Cuatro de Diciembre",
+    "fecha": "13 de abril",
+    "tituloCompleto": "Sacramental del Glorioso Patriarca San José y Cofradía de Nazarenos de Ntro. Padre Jesús del Amor en su Prendimiento y María Stma. de la Concepción",
+    "anoFundacion": "2017",
+    "webOficial": "http://www.amoryconcepcion.blogspot.com.es/"
+  },
+  {
+    "id": 26978,
+    "name": "Borriquita",
+    "day": "Domingo de Ramos",
+    "exitTime": "12:00",
+    "entryTime": "14:15",
+    "shieldUrl": "/assets/images/escudos/borriquita.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza de Santa María",
+      "Plaza de España (Por delante de Bar Emilio)",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle",
+      "Calle Zayas",
+      "Calle Secretario Armesto",
+      "Barrera D. Esteban Santos Peña",
+      "Calle La Marquesa",
+      "Calle del Conde",
+      "Plaza de España (por delante de silla ayuntamiento)",
+      "Plaza de Santa María",
+      "Templo."
+    ],
+    "description": "ILUSTRE Y FERVOROSA HERMANDAD Y COFRADÍA DE NAZARENOS DE LA SAGRADA ENTRADA TRIUNFAL DE JESÚS EN JERUSALÉN, NUESTRO PADRE JESÚS CAUTIVO Y NUESTRA MADRE Y SEÑORA DE LAS LÁGRIMAS Y SANTA MARÍA EN SU INMACULADA CONCEPCIÓN Fundación: 1955. Sede canónica: Iglesia de Santa María. Fecha: 13 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 1,
+    "pasos": [
+      {
+        "nombre": "Sagrada Entrada de Jesús en Jerusalén",
+        "descripcion": "Paso cuya canastilla combina talla de madera en su color con destacadas aplicaciones de metal plateado. Representa a Jesús entrando triunfante en Jerusalén sobre el pollino, rodeado de un amplio misterio con apóstoles, mujeres y niños.",
+        "tunica_nazarenos": "Negra, capa blanca, capillo blanco y cíngulo de esparto.",
+        "costaleros": 35
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "12:20",
+      "entradaSantaCruz": "12:55"
+    },
+    "iglesia": "Iglesia de Santa María",
+    "fecha": "13 de abril",
+    "tituloCompleto": "ILUSTRE Y FERVOROSA HERMANDAD Y COFRADÍA DE NAZARENOS DE LA SAGRADA ENTRADA TRIUNFAL DE JESÚS EN JERUSALÉN, NUESTRO PADRE JESÚS CAUTIVO Y NUESTRA MADRE Y SEÑORA DE LAS LÁGRIMAS Y SANTA MARÍA EN SU INMACULADA CONCEPCIÓN",
+    "anoFundacion": "1955",
+    "webOficial": "www.hermandaddelcautivo.es"
+  },
+  {
+    "id": 57188,
+    "name": "Cautivo y Lágrimas",
+    "day": "Domingo de Ramos",
+    "exitTime": "18:30",
+    "entryTime": "22:45",
+    "shieldUrl": "/assets/images/escudos/cautivo-y-lagrimas.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza de Santa María",
+      "Plaza de España",
+      "Avenida de Miguel de Cervantes",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "Plaza de España",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle (por medio de la Plaza)",
+      "Calle Zayas",
+      "Calle Secretario Armesto",
+      "Barrera D. Esteban Santos Peña",
+      "Calle La Marquesa",
+      "Calle Santa Ángela de la Cruz",
+      "Calle Cánovas del Castillo",
+      "Plaza de la Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Avenida de Miguel de Cervantes",
+      "Plaza de España",
+      "Plaza de Santa María y Templo."
+    ],
+    "description": "ILUSTRE Y FERVOROSA HERMANDAD Y COFRADÍA DE NAZARENOS DE LA SAGRADA ENTRADA TRIUNFAL DE JESÚS EN JERUSALÉN, NUESTRO PADRE JESÚS CAUTIVO Y NUESTRA MADRE Y SEÑORA DE LAS LÁGRIMAS Y SANTA MARÍA EN SU INMACULADA CONCEPCIÓN Fundación: 1955. Sede canónica: Iglesia de Santa María. Fecha: 13 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Nuestro Padre Jesús Cautivo",
+        "descripcion_imagen": "La imagen es de un autor anónimo del siglo XVIII.",
+        "tunica_nazarenos": "Negra, capa blanca, capillo blanco y cíngulo de esparto.",
+        "costaleros": 35,
+        "descripcion": "Misterio de estilo barroco con dorados y talla de Guillermo Riego. La bellísima imagen de Jesús Cautivo, esculpida en 1947, destaca singularmente por llevar la corona de espinas tallada e impresa en la misma madera de su cabeza."
+      },
+      {
+        "nombre": "Nuestra Madre y Señora de las Lágrimas",
+        "descripcion": "Procesiona bajo un rico palio bordado sobre terciopelo burdeos, que incluye una pintura oval en el techo. La imagen anónima del s. XVIII deslumbra con una orfebrería repujada de los talleres de Villarreal y Juan Fernández.",
+        "tunica_nazarenos": "Negra, capa blanca capillo negro y cíngulo de esparto.",
+        "costaleros": 30
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "19:20",
+      "entradaSantaCruz": "20:00"
+    },
+    "iglesia": "Iglesia de Santa María",
+    "fecha": "13 de abril",
+    "tituloCompleto": "ILUSTRE Y FERVOROSA HERMANDAD Y COFRADÍA DE NAZARENOS DE LA SAGRADA ENTRADA TRIUNFAL DE JESÚS EN JERUSALÉN, NUESTRO PADRE JESÚS CAUTIVO Y NUESTRA MADRE Y SEÑORA DE LAS LÁGRIMAS Y SANTA MARÍA EN SU INMACULADA CONCEPCIÓN",
+    "anoFundacion": "1955",
+    "webOficial": "www.hermandaddelcautivo.es"
+  },
+  {
+    "id": 68445,
+    "name": "Yedra",
+    "day": "Lunes Santo",
+    "exitTime": "19:00",
+    "entryTime": "23:00",
+    "shieldUrl": "/assets/images/escudos/yedra.png",
+    "mainImage": "",
+    "itinerary": [
+      "Barrera Santísimo Cristo de la Yedra",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "Plaza de España",
+      "CARRERA OFICIAL",
+      "Plaza Ntra. Sra. del Valle",
+      "Calle Ramón Freire",
+      "Calle José Canalejas",
+      "Puerta Palma",
+      "Calle Merinos",
+      "Calle Berbisa",
+      "Plaza Giles y Rubio",
+      "Barrera Santísimo Cristo de la Yedra y Templo."
+    ],
+    "description": "Fervorosa Hermandad del Santísimo Cristo de la Yedra y Nuestra Señora de la Caridad Fundación: 1959. Sede canónica: Iglesia de Santa Ana. Fecha: 14 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Santísimo Cristo de la Yedra",
+        "tunica_nazarenos": "Túnica y capillo verde. Capa blanca y cíngulo de esparto anudado a la izquierda.",
+        "costaleros": 29,
+        "descripcion": "Cristo muerto del siglo XVII, atribuido a la escuela de Montañés, que irradia gran clasicismo y serena divinidad en el patíbulo, taladrado por tres clavos sobre su paso."
+      },
+      {
+        "nombre": "Nuestra Señora de la Caridad",
+        "descripcion": "Dulce dolorosa de traza sevillana tallada por Francisco Buiza, que porta en su pecho un áureo puñal traspasando su corazón en alusión a sus dolores. Procesiona desprendiendo gran devoción franciscana.",
+        "tunica_nazarenos": "Túnica y capillo verde. Capa blanca y cíngulo de esparto anudado a la izquierda.",
+        "costaleros": 30
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "19:45",
+      "entradaSantaCruz": "21:00"
+    },
+    "iglesia": "Iglesia de Santa Ana",
+    "fecha": "14 de abril",
+    "tituloCompleto": "Fervorosa Hermandad del Santísimo Cristo de la Yedra y Nuestra Señora de la Caridad",
+    "anoFundacion": "1959",
+    "webOficial": "www.hermandadyedraecija.com"
+  },
+  {
+    "id": 1277,
+    "name": "Expiración",
+    "day": "Martes Santo",
+    "exitTime": "19:00",
+    "entryTime": "00:30",
+    "shieldUrl": "/assets/images/escudos/expiracion.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza de Santiago",
+      "Calle Santiago",
+      "Calle Padilla",
+      "Avda. Miguel de Cervantes",
+      "Calle Emilio Castelar",
+      "Calle Jesús sin Soga",
+      "Plaza de España",
+      "CARRERA OFICIAL",
+      "Plaza Ntra. Sra. del Valle",
+      "Calle Ramón Freire",
+      "Calle José Canalejas",
+      "Calle Santa Florentina",
+      "Calle Sevilla",
+      "Calle Carreras",
+      "Calle Cavilla",
+      "Calle Carmelitas",
+      "Barrera D. Esteban Santos",
+      "Calle La Marquesa",
+      "Calle del Conde",
+      "Plaza de España",
+      "Plaza de Santa María",
+      "Calle Fernández Pintado",
+      "Calle Santa Ángela de la Cruz",
+      "Puerta Osuna",
+      "Calle Cava",
+      "Plaza de Santiago y Templo."
+    ],
+    "description": "Hermandad del Santísimo Cristo de la Expiración, Nuestra Señora de los Dolores y Nuestro Padre Jesús Nazareno de la Misericordia (Hermandad de los Estudiantes) Fundación: 1579. Sede canónica: Iglesia de Santiago. Fecha: 15 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 3,
+    "pasos": [
+      {
+        "nombre": "Nuestro Padre Jesús Nazareno de la Misericordia",
+        "descripcion": "Expresivo paso de misterio que recrea con fuerza el momento de las Negaciones y Lágrimas de San Pedro, flanqueando a Cristo maniatado junto a sayones, soldados y acusadores esculpidos por Amadeo Rojas.",
+        "costaleros": 45,
+        "tunica_nazarenos": "Túnica y capa blanca. Capillo blanco con escudo bordado y cíngulo de esparto."
+      },
+      {
+        "nombre": "Santísimo Cristo de la Expiración",
+        "descripcion": "Imponente talla barroca de gran dramatismo y realismo ejecutada por el célebre Pedro Roldán en 1680. Recorre las calles ecijanas en un paso ricamente tallado exhibiendo su agonía iluminado por sobrios hachones.",
+        "costaleros": 35,
+        "tunica_nazarenos": "Túnica y capa blanca. Capillo rojo con escudo bordado y cíngulo de esparto."
+      },
+      {
+        "nombre": "Nuestra Señora de los Dolores",
+        "descripcion": "Soberbia dolorosa atribuida al taller de Montes de Oca en 1713 que dirige al cielo su implorante mirada. Refulgura en su nuevo paso y candelería plateada luciendo corona imperial.",
+        "costaleros": 30,
+        "tunica_nazarenos": "Túnica y capa blanca. Capillo morado con escudo bordado y cíngulo de esparto."
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "20:00",
+      "entradaSantaCruz": "20:45"
+    },
+    "iglesia": "Iglesia de Santiago",
+    "fecha": "15 de abril",
+    "tituloCompleto": "Hermandad del Santísimo Cristo de la Expiración, Nuestra Señora de los Dolores y Nuestro Padre Jesús Nazareno de la Misericordia (Hermandad de los Estudiantes)",
+    "anoFundacion": "1579",
+    "webOficial": "www.hermandad-expiracion.es"
+  },
+  {
+    "id": 78066,
+    "name": "San Gil",
+    "day": "Miércoles Santo",
+    "exitTime": "18:30",
+    "entryTime": "00:30",
+    "shieldUrl": "/assets/images/escudos/san-gil.png",
+    "mainImage": "",
+    "itinerary": [
+      "Calle San Antonio",
+      "Calle Cadenas",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "Plaza de España",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle",
+      "Calle Ramón Freire Gálvez",
+      "Calle José Canalejas",
+      "Calle Santa Florentina",
+      "Calle Sevilla",
+      "Calle Carreras",
+      "Calle Gavilla",
+      "Calle Carmelita",
+      "Barrera Esteban Santo Peñas",
+      "Calle Marquesa",
+      "Calle del Conde",
+      "Calle Santa Ángela de la Cruz",
+      "Calle Cánovas del Castillo",
+      "Plaza de la Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Calle Emilio Castelar",
+      "Calle Cadenas",
+      "Calle San Antonio",
+      "Plaza de San Gil y Templo."
+    ],
+    "description": "Sacramental y Real Archicofradía de Nazarenos de la Coronación de Espinas de Nuestro Señor Jesucristo, San Marcos, San Roque, Santísimo Cristo de la Salud, Nuestra Señora de los Dolores, Sagrado Corazón de Jesús y San Juan de Dios Fundación: 1581. Sede canónica: Iglesia de San Gil. Fecha: 16 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 3,
+    "pasos": [
+      {
+        "nombre": "La Coronación de Espinas de Nuestro Señor Jesucristo",
+        "descripcion": "Majestuoso paso tallado y dorado de formato neobarroco que expone a un Ecce Homo coronado de espinas, flanqueado por Poncio Pilatos, romanos y otras dignidades dentro del patio del pretorio romano.",
+        "costaleros": 45,
+        "tunica_nazarenos": "Morada con botonadura blanca, fajín morado. Capa blanca con vueltas moradas. Escudo de pasión sobre fondo morado bordado sobre el hombro izquierdo. Capirote corto cubierto por capillo morado con escudo."
+      },
+      {
+        "nombre": "Santísimo Cristo de la Salud",
+        "descripcion": "Histórico crucificado exento y de bulto redondo datado en el siglo XVI, que sobresale por preservar maravillosamente su sudario estofado. Es realzado por la sobriedad de su cruz arbórea.",
+        "costaleros": 35,
+        "tunica_nazarenos": "Morada con botonadura blanca, fajín morado. Capa blanca con vueltas moradas. Escudo de pasión sobre fondo morado bordado sobre el hombro izquierdo. Capirote corto cubierto por capillo morado con escudo."
+      },
+      {
+        "nombre": "Nuestra Señora de los Dolores",
+        "descripcion": "Obra cumbre de la gubia andaluza con dolorida extática mirada y cinco lágrimas de cristal talladas. Desfila bajo un soberbio y clásico palio de la orfebrería hispalense, acompañada de San Juan y San Roque.",
+        "costaleros": 35,
+        "tunica_nazarenos": "Blanca con botonadura celeste, ceñida por fajín celeste. Capa blanca con vueltas celestes. Escudo de pasión sobre fondo celeste bordado sobre el hombro izquierdo. Capirote corto cubierto por capillo celeste con escudo."
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "19:00",
+      "entradaSantaCruz": "20:00"
+    },
+    "iglesia": "Iglesia de San Gil",
+    "fecha": "16 de abril",
+    "tituloCompleto": "Sacramental y Real Archicofradía de Nazarenos de la Coronación de Espinas de Nuestro Señor Jesucristo, San Marcos, San Roque, Santísimo Cristo de la Salud, Nuestra Señora de los Dolores, Sagrado Corazón de Jesús y San Juan de Dios",
+    "anoFundacion": "1581",
+    "webOficial": "www.hermandadsangil.es"
+  },
+  {
+    "id": 27120,
+    "name": "Hermandad de Confalón",
+    "day": "Jueves Santo",
+    "exitTime": "19:15",
+    "entryTime": "00:30",
+    "shieldUrl": "/assets/images/escudos/hermandad-de-confalon.png",
+    "mainImage": "",
+    "itinerary": [
+      "Avda. Andalucía",
+      "Calle Mendoza",
+      "Puerta Osuna",
+      "Plazuela de Puerta Osuna",
+      "Calle Cánovas del Castillo",
+      "Plaza de la Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Avda. Miguel de Cervantes",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga (Esquina Santa Bárbara)",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle",
+      "Calle Ramón Freire Gálvez",
+      "Calle José Canalejas",
+      "Calle La Calzada",
+      "Plaza de Colón",
+      "Calle Carreras",
+      "Puerta Cerrada",
+      "Calle Ancha",
+      "Puerta Osuna",
+      "Calle Mendoza",
+      "Avda. de Andalucía y Templo."
+    ],
+    "description": "Real y Fervorosa Hermandad y Confradía de Penitencia del Bienaventurado San Francisco de Paula, Santísimo Cristo de la Sagrada Columna y Azotes, Santísimo Cristo de Confalón, Nuestra Señora de la Esperanza y de la Purísima Concepción de María Fundación: 1570. Sede canónica: Iglesia de la Victoria. Fecha: 17 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 3,
+    "pasos": [
+      {
+        "nombre": "Sagrada Columna y Azotes de Nuestro Señor Jesucristo",
+        "costaleros": 35,
+        "tunica_nazarenos": "Túnica, capa y capillo blancos, con fajín de terciopelo y escudo bordado (burdeos en el misterio).",
+        "descripcion": "Férreo paso misterio, original de los Gitanos de Sevilla e incorporado a la hermandad del Jueves Santo en 1979, el cual representó la conformación de la primera cuadrilla de costaleros ecijanos."
+      },
+      {
+        "nombre": "Santísimo Cristo de Confalón",
+        "costaleros": 32,
+        "tunica_nazarenos": "Túnica, capa y capillo blancos, con fajín de terciopelo y escudo bordado (negro en el Cristo).",
+        "descripcion": "Una joya del viejo estilo ecijano. El Cristo procesiona sobre una altísima peana portada a hombros, rematado por bellísimo dosel, en medio de una cruz de filigrana forrada en carey, nácar y plata."
+      },
+      {
+        "nombre": "Nuestra Señora de la Esperanza",
+        "descripcion": "Dulcificando la noche del Jueves Santo tras la sobriedad labradora, esta icónica dolorosa acapara miradas en su tradicional paso de palio, modernizando el aspecto litúrgico clásico.",
+        "costaleros": 30,
+        "tunica_nazarenos": "Túnica, capa y capillo blancos, con fajín de terciopelo y escudo bordado (verde en el palio)."
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "20:45",
+      "entradaSantaCruz": "21:30"
+    },
+    "iglesia": "Iglesia de la Victoria",
+    "fecha": "17 de abril",
+    "tituloCompleto": "Real y Fervorosa Hermandad y Confradía de Penitencia del Bienaventurado San Francisco de Paula, Santísimo Cristo de la Sagrada Columna y Azotes, Santísimo Cristo de Confalón, Nuestra Señora de la Esperanza y de la Purísima Concepción de María",
+    "anoFundacion": "1570",
+    "webOficial": "www.hermandaddeconfalon.es"
+  },
+  {
+    "id": 64425,
+    "name": "Hermandad de la Sangre",
+    "day": "Jueves Santo",
+    "exitTime": "19:30",
+    "entryTime": "00:45",
+    "shieldUrl": "/assets/images/escudos/hermandad-de-la-sangre.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza Ntra. Sra. del Valle",
+      "Ramón Freire Gálvez",
+      "José Canalejas",
+      "Puerta Palma",
+      "La Calzada",
+      "Salto",
+      "Zamoranos",
+      "Caleros",
+      "Avda. de los Emigrantes",
+      "Plaza de Colón",
+      "Carreras",
+      "Puerta Cerrada",
+      "El Conde",
+      "Plaza de España",
+      "Miguel de Cervantes",
+      "Emilio Castelar",
+      "Jesús Sin Soga",
+      "CARRERA OFICIAL",
+      "Plaza Ntra. Sra. del Valle y Templo."
+    ],
+    "description": "Real, Muy Antigua y Fervorosa Hermandad del Santísimo Cristo de la Sangre y Nuestra Señora de los Dolores Fundación: 1564. Sede canónica: Iglesia de Santa Cruz. Fecha: 17 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Santísimo Cristo de la Sangre",
+        "descripcion": "Estilizada y sutil obra del Renacimiento sevillano obrada por Gaspar del Águila (1567). Impregna de un canon naturalista a todo El Ejido sobre un dinámico canasto tallado por Antonio Martín.",
+        "costaleros": 35,
+        "tunica_nazarenos": "Túnica roja con capa blanca, cíngulo de esparto y capillo rojo."
+      },
+      {
+        "nombre": "Nuestra Señora de los Dolores",
+        "descripcion": "Dolorosa de semblante ecijano que fue transformando su tipología de salida hasta consagrarse hoy bajo palio y con costal, vestida en ricas sedas sobre terciopelo granate.",
+        "costaleros": 35,
+        "tunica_nazarenos": "Túnica blanca con capa roja, cíngulo rojo y capillo blanco."
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "23:45",
+      "entradaSantaCruz": "00:45"
+    },
+    "iglesia": "Iglesia de Santa Cruz",
+    "fecha": "17 de abril",
+    "tituloCompleto": "Real, Muy Antigua y Fervorosa Hermandad del Santísimo Cristo de la Sangre y Nuestra Señora de los Dolores",
+    "anoFundacion": "1564",
+    "webOficial": "http://hermandadlasangre.es/"
+  },
+  {
+    "id": 88787,
+    "name": "Mortaja",
+    "day": "Viernes Santo",
+    "exitTime": "19:15",
+    "entryTime": "23:05",
+    "shieldUrl": "/assets/images/escudos/mortaja.png",
+    "mainImage": "",
+    "itinerary": [
+      "Barrera de D. Esteban Santos Peña",
+      "Calle La Marquesa",
+      "Calle El Conde",
+      "Plaza de España (por delante de sillas ayto)",
+      "Plaza de Santa María",
+      "Calle Fernández Pintado",
+      "Calle Santa Ángela de la Cruz",
+      "Calle Cánovas del Castillo",
+      "Plaza de la Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Avda. Miguel de Cervantes",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "Plaza de España (Santa Bárbara)",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle",
+      "Calle Zayas",
+      "Calle Secretario Armesto",
+      "Barrera de D. Esteban Santos Peña y Entrada al Templo."
+    ],
+    "description": "Sacramental de Nuestra Señora del Carmen, Cofradía de Nazarenos de Santísimo Cristo de la Misericordia, Nuestro Padre Jesús Descendido de la Cruz en el Misterio de su Sagrada Mortaja y María Santísima de la Piedad Fundación: 1989. Sede canónica: Iglesia de los Descalzos. Fecha: 18 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 1,
+    "pasos": [
+      {
+        "nombre": "Sagrado Descendimiento de Nuestro Señor Jesucristo y Nuestra Señora de la Piedad",
+        "descripcion": "Majestuosa maquinaria barroca de Pedro M. Benítez que escenifica a Jesús inerte entregado al regazo de su Madre Piedad tras ser descendido. Los complementan José de Arimatea, Nicodemo y San Juan.",
+        "tunica_nazarenos": "Túnica y escapulario de color marrón, capillo de color crema y sandalias negras con calcetines blancos.",
+        "costaleros": 35
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "21:10",
+      "entradaSantaCruz": "22:05"
+    },
+    "iglesia": "Iglesia de los Descalzos",
+    "fecha": "18 de abril",
+    "tituloCompleto": "Sacramental de Nuestra Señora del Carmen, Cofradía de Nazarenos de Santísimo Cristo de la Misericordia, Nuestro Padre Jesús Descendido de la Cruz en el Misterio de su Sagrada Mortaja y María Santísima de la Piedad",
+    "anoFundacion": "1989",
+    "webOficial": "http://www.lamortaja.es/"
+  },
+  {
+    "id": 83972,
+    "name": "Piedad",
+    "day": "Viernes Santo",
+    "exitTime": "20:15",
+    "entryTime": "00:40",
+    "shieldUrl": "/assets/images/escudos/piedad.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza de Santa María",
+      "Calle Fernández Pintado",
+      "Calle Santa Ángela de la Cruz",
+      "Calle Cánovas del Castillo",
+      "Plaza de la Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "Plaza de España",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle",
+      "Calle Zayas",
+      "Calle Secretario Armesto",
+      "Calle La Marquesa",
+      "Calle el Conde",
+      "Plaza de España (por delante sillas de Ayuntamiento)",
+      "Plaza de Santa María y Templo."
+    ],
+    "description": "Muy Antigua y Fervorosa Hermandad de Nuestra Señora de la Piedad y Santísimo Cristo de la Exaltación en la Cruz de Écija Fundación: 1509. Sede canónica: Iglesia de Santa María. Fecha: 18 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Nuestro Padre Jesús de las Penas en sus Tres Caídas",
+        "descripcion": "Talla de Miguel Vilches (1597) y baluarte del Gremio de alarifes. Su misterio congela el dramatismo en que los verdugos izan la cruz antes de fijarla en el Gólgota.",
+        "tunica_nazarenos": "Túnica blanca, capillo y capa negra.",
+        "costaleros": 35
+      },
+      {
+        "nombre": "Nuestra Señora de la Piedad",
+        "descripcion": "Efigie anónima entronizada en 1751, dueña del mayor testimonio y tradición paseando bajo palio por la ciudad astigitana. Acompañada de San Juan, destila clasicismo mercedario.",
+        "tunica_nazarenos": "Túnica blanca, capillo y capa negra.",
+        "costaleros": 30
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "22:10",
+      "entradaSantaCruz": "22:50"
+    },
+    "iglesia": "Iglesia de Santa María",
+    "fecha": "18 de abril",
+    "tituloCompleto": "Muy Antigua y Fervorosa Hermandad de Nuestra Señora de la Piedad y Santísimo Cristo de la Exaltación en la Cruz de Écija",
+    "anoFundacion": "1509",
+    "webOficial": "Información no encontrada"
+  },
+  {
+    "id": 47463,
+    "name": "San Juan",
+    "day": "Viernes Santo",
+    "exitTime": "06:00",
+    "entryTime": "11:00",
+    "shieldUrl": "/assets/images/escudos/san-juan.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza de San Juan",
+      "Calle Juan de Angulo",
+      "Calle Arcipreste Aparicio",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "CARRERA OFICIAL",
+      "Plaza de Nuestra Señora del Valle",
+      "Calle Zayas",
+      "Calle Secretario Armesto",
+      "Barrera Don Esteban Santos Peña",
+      "Calle La Marquesa",
+      "Calle Santa Ángela de la Cruz",
+      "Calle Cánovas del Castillo",
+      "Plaza de la Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Calle Emilio Castelar",
+      "Arcipreste Aparicio",
+      "Calle Juan de Angulo",
+      "Plaza de San Juan y Templo."
+    ],
+    "description": "Pontificia, Ilustre y Muy Antigua Hermandad y Confradía de Nuestro Padre Jesús Nazareno, Santa Cruz en Jerusalén, María Santísima de las Misericordias y San Juan Evangelista y San Francisco de Écija Fundación: 1582. Sede canónica: Iglesia de San Juan. Fecha: 18 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Nuestro Padre Jesús Nazareno",
+        "descripcion": "Emblema centenario de la Cuaresma ecijana de 1593, portando imponente su cruz camino al Calvario mientras recibe el fervor y respetuoso rezo de sus nazarenos de riguroso ruán negro.",
+        "costaleros": 35,
+        "tunica_nazarenos": "Negra con capa recogida en el fajín, capillo negro; la cruz de Jerusalén en rojo."
+      },
+      {
+        "nombre": "Nuestra Señora de las Misericordias",
+        "descripcion": "Serenísima Dolorosa nacida de las manos de Ricardo Comas. Su delicado palio acuna las plegarias nocturnas con la sobriedad señorial inmutable del viejo alcázar.",
+        "costaleros": 30,
+        "tunica_nazarenos": "Negra con capa recogida en el fajín, capillo negro; la cruz de Jerusalén en rojo."
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "06:48",
+      "entradaSantaCruz": "07:32"
+    },
+    "iglesia": "Iglesia de San Juan",
+    "fecha": "18 de abril",
+    "tituloCompleto": "Pontificia, Ilustre y Muy Antigua Hermandad y Confradía de Nuestro Padre Jesús Nazareno, Santa Cruz en Jerusalén, María Santísima de las Misericordias y San Juan Evangelista y San Francisco de Écija",
+    "anoFundacion": "1582",
+    "webOficial": "www.hermandaddesanjuan.com"
+  },
+  {
+    "id": 34963,
+    "name": "Silencio",
+    "day": "Viernes Santo",
+    "exitTime": "00:00",
+    "entryTime": "03:00",
+    "shieldUrl": "/assets/images/escudos/silencio.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza Nuestra Señora del Valle",
+      "Calle Ramón Freire Gálvez",
+      "Calle José Canalejas",
+      "Calle Santa Florentina",
+      "Calle Sevilla",
+      "Calle Carreras",
+      "Plaza de Puerta Cerrada",
+      "Calle El Conde",
+      "Calle Santa Ángela de la Cruz",
+      "Calle Fernández Pintado",
+      "Plaza de Santa María",
+      "Plaza de España",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle y Templo."
+    ],
+    "description": "Real y Venerable Hermandad y Cofradía de Nazarenos de Nuestro Padre Jesús Nazareno Abrazado a la Cruz y María Santísima de la Amargura Fundación: 1666. Sede canónica: Iglesia de Santa Cruz. Fecha: 18 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Nuestro Padre Jesús Abrazado a la Cruz",
+        "tunica_nazarenos": "Túnica morada con botonadura negra, capa y capillo negro y cíngulo de esparto.",
+        "costaleros": 35,
+        "descripcion": "Obra maestra presumible del artista Pedro Roldán, de origen milagroso. Procesiona sosteniendo amorosamente su valiosa Cruz de plata repujada del s. XVII entre escolta de sobrios faroles plateados."
+      },
+      {
+        "nombre": "María Santísima de la Amargura",
+        "descripcion": "El sublime canto de cisne póstumo de Castillo Lastrucci (1964). Bajo un finísimo palio bordado de tisú por el ecijano Joaquín Ojeda, es cortejada por el inaudible silencio rotundo de la Madrugada del Viernes Santo.",
+        "tunica_nazarenos": "Túnica morada con botonadura negra, capa y capillo negro y cíngulo de esparto.",
+        "costaleros": 35
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "02:15",
+      "entradaSantaCruz": "03:00"
+    },
+    "iglesia": "Iglesia de Santa Cruz",
+    "fecha": "18 de abril",
+    "tituloCompleto": "Real y Venerable Hermandad y Cofradía de Nazarenos de Nuestro Padre Jesús Nazareno Abrazado a la Cruz y María Santísima de la Amargura",
+    "anoFundacion": "1666",
+    "webOficial": "http://www.elsilenciodeecija.com/"
+  },
+  {
+    "id": 77415,
+    "name": "Sin Soga",
+    "day": "Viernes Santo",
+    "exitTime": "20:00",
+    "entryTime": "23:30",
+    "shieldUrl": "/assets/images/escudos/sin-soga.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza De España",
+      "CARRERA OFICIAL",
+      "Plaza Ntra. Sra. Del Valle",
+      "Zayas",
+      "Secretario Armesto",
+      "Plaza Don Esteban Santos Peña",
+      "La Marquesa",
+      "El Conde (Hospitalito)",
+      "Santa Ángela De La Cruz",
+      "Canovas Del Castillo",
+      "Plaza Constitución",
+      "Fray Carlos Amigo Vallejo",
+      "Avda. Miguel de Cervantes",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "Plaza de España y Templo."
+    ],
+    "description": "Hermandad y Cofradía de Nuestro Padre Jesús Sin Soga, Nuestra Señora de la Fe y Sagrados Corazones de Jesús y María Fundación: 1977. Sede canónica: Iglesia de Santa Bárbara. Fecha: 18 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Nuestro Padre Jesús Sin Soga",
+        "descripcion": "Talla cumbre de Montes de Oca (1732). Procesiona majestuosamente abrazando su cruz carente de cíngulo, honrando la famosa leyenda fundacional ecijana.",
+        "tunica_nazarenos": "Túnica blanca sin cíngulo, capillo blanco sin capirote.",
+        "costaleros": 30
+      },
+      {
+        "nombre": "Nuestra Señora de la Fe",
+        "descripcion": "Documentada como la dolorosa procesional más primitiva de Écija, labrada por Roldán hacia 1670. Posee la estampa única en la ciudad de marchar en actitud orante al más ancestral y puro estilo ecijano.",
+        "tunica_nazarenos": "Túnica blanca sin cíngulo, capillo blanco sin capirote.",
+        "costaleros": 30
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "20:05",
+      "entradaSantaCruz": "21:10"
+    },
+    "iglesia": "Iglesia de Santa Bárbara",
+    "fecha": "18 de abril",
+    "tituloCompleto": "Hermandad y Cofradía de Nuestro Padre Jesús Sin Soga, Nuestra Señora de la Fe y Sagrados Corazones de Jesús y María",
+    "anoFundacion": "1977",
+    "webOficial": "www.jesussinsoga.com"
+  },
+  {
+    "id": 43437,
+    "name": "Soledad",
+    "day": "Sábado Santo",
+    "exitTime": "18:15",
+    "entryTime": "23:00",
+    "shieldUrl": "/assets/images/escudos/soledad.png",
+    "mainImage": "",
+    "itinerary": [
+      "Calle Fuentes De Andalucía",
+      "Calle San Juan Bosco",
+      "Plaza De Ntra. Sra. De Los Remedios",
+      "Plaza De Puerta Cerrada",
+      "Calle Del Conde",
+      "Calle Santa Ángela De La Cruz",
+      "Calle Cánovas Del Castillo",
+      "Plaza De La Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Avda. Miguel De Cervantes",
+      "Calle Emilio Castelar",
+      "Jesús Sin Soga",
+      "Plaza De España",
+      "CARRERA OFICIAL",
+      "Plaza De Ntra. Sra. Del Valle",
+      "Calle Ramón Freire",
+      "Calle José Canalejas",
+      "Calle Santa Florentina",
+      "Calle Sevilla",
+      "Carreras",
+      "Plaza De Colón",
+      "Calle El Carmen y Templo."
+    ],
+    "description": "Real Hermandad de Nuestra Señora de la Soledad y Santo Entierro de Nuestro Señor Jesucristo Fundación: 1573 (Aprobación de Reglas). Sede canónica: Iglesia de Ntra. Sra. del Carmen. Fecha: 19 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 3,
+    "pasos": [
+      {
+        "nombre": "Quinta Angustia de María Santísima (Piedad)",
+        "descripcion": "Hermoso y vibrante conjunto neobarroco sobre ebanistería tallada. La Virgen de las Angustias recibe el cuerpo desplomado del Cristo de la Paz gubiado recientemente, al resguardo de la cruz repujada original de carey.",
+        "tunica_nazarenos": "Color blanca, capa negra y capillo en terciopelo negro con vivo blanco; fajín también en terciopelo negro. Las capas llevan sobre el hombro izquierdo el escudo de la Hermandad.",
+        "costaleros": 30
+      },
+      {
+        "nombre": "Santo Sepulcro (Cristo Yacente)",
+        "tunica_nazarenos": "Color blanca, capa negra y capillo en terciopelo negro con vivo blanco; fajín también en terciopelo negro. Las capas llevan sobre el hombro izquierdo el escudo de la Hermandad.",
+        "costaleros": "A ruedas",
+        "descripcion": "Devoto y arcaico Cristo Yacente bajomedieval (s. XIV-XV) guarecido en su legendaria urna de concha de carey y engastes argénteos (1711). Procesiona sobre catafalco neoclásico escoltado por magno cortejo fúnebre."
+      },
+      {
+        "nombre": "Nuestra Señora de la Soledad",
+        "tunica_nazarenos": "Color blanca, capa negra y capillo en terciopelo negro con vivo blanco; fajín también en terciopelo negro. Las capas llevan sobre el hombro izquierdo el escudo de la Hermandad.",
+        "costaleros": 35,
+        "descripcion": "Obra magna atribuida a Duque Cornejo alzada en una colosal y fastuosa peana dorada del más genuino remate ecijano. Coronada por la ráfaga de plata de Damián de Castro, rubrica el Sábado Santo."
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "20:15",
+      "entradaSantaCruz": "21:05"
+    },
+    "iglesia": "Iglesia de Ntra. Sra. del Carmen",
+    "fecha": "19 de abril",
+    "tituloCompleto": "Real Hermandad de Nuestra Señora de la Soledad y Santo Entierro de Nuestro Señor Jesucristo",
+    "anoFundacion": "1573 (Aprobación de Reglas)",
+    "webOficial": "http://soledadecija.org/"
+  },
+  {
+    "id": 9329,
+    "name": "Resucitado",
+    "day": "Domingo de Resurrección",
+    "exitTime": "10:00",
+    "entryTime": "13:30",
+    "shieldUrl": "/assets/images/escudos/resucitado.png",
+    "mainImage": "",
+    "itinerary": [
+      "Plaza Nuestra Señora del Valle",
+      "Calle Santa Cruz",
+      "Plaza de España (por delante de las sillas)",
+      "Plaza de Santa María",
+      "Calle Fernández Pintado",
+      "Calle Santa Ángela de la Cruz",
+      "Calle Cánovas del Castillo",
+      "Plaza de la Constitución",
+      "Calle Fray Carlos Amigo Vallejo",
+      "Calle Emilio Castelar",
+      "Calle Jesús Sin Soga",
+      "Plaza de España",
+      "CARRERA OFICIAL",
+      "Plaza Nuestra Señora del Valle",
+      "Templo."
+    ],
+    "description": "Hermandad del Santísimo Sacramento, Gloriosa Resurrección de Nuestro Señor Jesucristo, María Santísima de la Alegría y Santa María Magdalena Fundación: 1601. Sede canónica: Iglesia de Santa Cruz. Fecha: 20 de abril.",
+    "colors": "",
+    "music": "Sin especificar",
+    "isFavorite": false,
+    "numeroPasos": 2,
+    "pasos": [
+      {
+        "nombre": "Santísimo Cristo Resucitado",
+        "tunica_nazarenos": "Túnica color crema, capillo blanco, capa blanca con franjas rojas a los lados.",
+        "costaleros": 40,
+        "descripcion": "Renacentista e ilustre talla de finales del XVI que personifica a la gloria viva. Con el paño dorado y estandarte argénteo aleteando el Domingo de Resurrección, cierra majestuosamente los siete días de pasión."
+      },
+      {
+        "nombre": "Nuestra Señora de la Alegría",
+        "descripcion": "Bella efigie letífica que desprende una sonrisa complaciente, fruto de la cincelada gubia de Dubé de Luque. Pasa a la historia local por ser el primer paso cargado por la primera cuadrilla de mujeres costaleras.",
+        "tunica_nazarenos": "Túnica color crema, capillo blanco, capa blanca con franjas celestes a los lados.",
+        "costaleros": 35
+      }
+    ],
+    "pasosImages": [],
+    "times": {
+      "carreraOficial": "12:25",
+      "entradaSantaCruz": "13:30"
+    },
+    "iglesia": "Iglesia de Santa Cruz",
+    "fecha": "20 de abril",
+    "tituloCompleto": "Hermandad del Santísimo Sacramento, Gloriosa Resurrección de Nuestro Señor Jesucristo, María Santísima de la Alegría y Santa María Magdalena",
+    "anoFundacion": "1601",
+    "webOficial": "www.hermandadresucitado.org"
+  }
+]

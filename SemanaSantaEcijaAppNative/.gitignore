@@ -1,0 +1,13 @@
+# Ignorar estado local Expo para el proyecto nativo
+.expo/
+/.expo
+.expo/*
+
+# Environment variables
+.env
+
+# Firebase & Secret Keys
+google-services.json
+*-service-account.json
+*.json.key
+secrets.json
