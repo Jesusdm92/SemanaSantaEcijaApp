@@ -1,6 +1,8 @@
-# ✝️ Cruz de Guía Écija
+<p align="center">
+  <img src="app_icon.png" width="128" height="128" alt="Cruz de Guía Écija Logo">
+</p>
 
-![Banner](banner_semana_santa_ecija.png)
+# ✝️ Cruz de Guía Écija
 
 **Cruz de Guía Écija** es una plataforma integral (Web y Mobile) diseñada para ofrecer toda la información relevante de la Semana Santa de Écija. Desde itinerarios detallados hasta alertas en tiempo real sobre incidencias y cambios de última hora.
 
