@@ -1,0 +1,77 @@
+[
+  {
+    "id": 75910,
+    "nombre": "Amor (El Olivo)",
+    "itinerario": "Estatuto de Autonomía, Alfonso Aragón Fofó, Pensamiento, Violeta, Pintor Fernández Briones, Bulevar José Silva Pirula, Miguel de Cervantes, Emilio Castelar, Jesús sin Soga, CARRERA OFICIAL, Plaza Nuestra Señora del Valle, Ramón Freire Gálvez, José Canalejas, Santa Florentina, Sevilla, Carreras, Cavilla, Carmelitas, Barrera Don Esteban Santos Peña, La Marquesa, El Conde, Santa Ángela de la Cruz, Plaza de Puerta Osuna, Cava, Santiago, Emparedamiento, Coronado, Avenida de Andalucía, José Herrainz Caraballo, José Rodríguez Melenas, Avenida del Genil por Calle Clavel, Alfonso Aragón Fofó, Estatuto de Autonomía y Templo (Carpa)."
+  },
+  {
+    "id": 26978,
+    "nombre": "Borriquita",
+    "itinerario": "Templo, Plaza de Santa María, Fernández Pintado, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Emilio Castelar, Jesús sin Soga, Plaza de España, Carrera Oficial, Plaza Nuestra Señora del Valle, Santa Cruz, Mas y Prat, Plaza de España, Plaza de Santa María y Templo."
+  },
+  {
+    "id": 57188,
+    "nombre": "Cautivo y Lágrimas",
+    "itinerario": "Plaza de Santa María, Plaza de España, Avenida Miguel de Cervantes, Emilio Castelar, Jesús sin Soga, Plaza de España, CARRERA OFICIAL, Plaza Nuestra Señora del Valle, Ramón Freire Gálvez, José Canalejas, Santa Florentina, Sevilla, Carreras, Cavilla, Carmelitas, D. Esteban Santos Peña, La Marquesa, El Conde, Plaza España, Plaza de Santa María y Templo."
+  },
+  {
+    "id": 68445,
+    "nombre": "Yedra",
+    "itinerario": "Barrera Santísimo Cristo de la Yedra, Emilio Castelar, Avda. Miguel de Cervantes, Plaza de España delante de Caja Rural, CARRERA OFICIAL, Plaza Ntra. Sra. del Valle, Ramón Freire Gálvez, José Canalejas, Puerta Palma, Merinos, Berbisa, Plaza de Giles y Rubio, Emilio Castelar, Barrera Santísimo Cristo de la Yedra y Templo."
+  },
+  {
+    "id": 1277,
+    "nombre": "Expiración",
+    "itinerario": "Plaza Santiago, Santiago, Padilla, Avda. Miguel Cervantes, Emilio Castelar, Jesús sin Soga, Plaza España, CARRERA OFICIAL, Plaza Ntra. Sra. del Valle, Ramón Freire Gálvez, José Canalejas, Santa Florentina, Sevilla, Carreras, Cavilla, Carmelitas, Barrera D. Esteban Santos Peña, La Marquesa, El Conde, Plaza de España, Plaza Santa María, Fernández Pintado, Santa Ángela de la Cruz, Puerta Osuna, Cava, Plaza de Santiago y Templo."
+  },
+  {
+    "id": 78066,
+    "nombre": "San Gil",
+    "itinerario": "Plaza de San Gil, San Antonio, Cadenas, Emilio Castelar, Jesús sin Soga, Plaza de España, CARRERA OFICIAL, Plaza Ntra. Sra. del Valle, Ramón Freire Gálvez, José Canalejas, Santa Florentina, Sevilla, Carreras, Plaza Puerta Cerrada, El Conde, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Miguel de Cervantes, Emilio Castelar, Cadenas, San Antonio, Plaza de San Gil y Templo"
+  },
+  {
+    "id": 27120,
+    "nombre": "Confalón",
+    "itinerario": "Avenida de Andalucía, Mendoza, Puerta Osuna, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Avenida Miguel de Cervantes, Emilio Castelar, Jesús sin Soga, CARRERA OFICIAL, Plaza Nuestra Señora del Valle, Ramón Freire Gálvez, José Canalejas, Puerta Palma, La Calzada, Plaza Colón, Carreras, Puerta Cerrada, Ancha, Puerta Osuna, Mendoza, Avenida de Andalucía y Templo."
+  },
+  {
+    "id": 64425,
+    "nombre": "La Sangre",
+    "itinerario": "Plaza Ntra. Sra. del Valle, Ramón Freire Gálvez, José Canalejas, Puerta Palma, La Calzada, Salto, Zamoranos, Caleros, Avda. de los Emigrantes, Plaza Colón, Carreras, Cavilla, Carmelitas, Plaza de D. Esteban Santos Peña, La Marquesa, El Conde, Plaza de España, Miguel de Cervantes, Emilio Castelar, Jesús sin Soga, CARRERA OFICIAL, Plaza Ntra. Sra. del Valle y Templo."
+  },
+  {
+    "id": 88787,
+    "nombre": "Mortaja",
+    "itinerario": "Barrera Don Esteban Santos Peña, La Marquesa, El Conde, Plaza de España (por delante de los palcos), Plaza de Santa María, Fernández Pintado, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Avda. Miguel de Cervantes, Emilio Castelar, Jesús sin Soga, Plaza España, CARRERA OFICIAL, Plaza Ntra. Sra. del Valle, Ramón Freire Gálvez, José Canalejas, Santa Florentina, Sevilla, Carreras, Cavilla, Carmelitas, Barrera Don Esteban Santos Peña y Templo."
+  },
+  {
+    "id": 83972,
+    "nombre": "Piedad",
+    "itinerario": "Merced, Estepa, Arco de Belén, Virgen de la Piedad, Emilio Castelar, Jesús sin Soga, CARRERA OFICIAL, Plaza Nuestra Señora del Valle, Santa Cruz, Más y Prat, Plaza de España (Delante de Ayuntamiento), Plaza de Santa María, Fernández Pintado, Santa Ángela de la Cruz, Plazuela de Puerta Osuna, Cava, Santiago, Padilla, Merced y Templo."
+  },
+  {
+    "id": 47463,
+    "nombre": "San Juan",
+    "itinerario": "Plaza de San Juan, Arcipreste Aparicio, Emilio Castelar, Jesús sin Soga, Plaza de España, CARRERA OFICIAL, Plaza Ntra. Sra. del Valle, Santa Cruz, Más y Prat, Plaza de España, El Conde, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Emilio Castelar, Juan de Angulo, Plaza de San Juan y Templo."
+  },
+  {
+    "id": 34963,
+    "nombre": "Silencio",
+    "itinerario": "Plaza Nuestra Señora del Valle, Ramón Freire Gálvez, José Canalejas, Santa Florentina, Sevilla, Carreras, Cavilla, Carmelitas, Barrera Don Esteban Santos Peña, La Marquesa, El Conde, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Emilio Castelar, Jesús sin Soga, CARRERA OFICIAL, Plaza Nuestra Señora del Valle y Templo."
+  },
+  {
+    "id": 77415,
+    "nombre": "Sin Soga",
+    "itinerario": "Plaza de España, CARRERA OFICIAL, Plaza Nuestra Señora del Valle, Ramón Freire Gálvez, José Canalejas, La Calzada, Plaza de Colón, Carreras, El Conde, Plaza de España (entrada por palcos), Miguel de Cervantes, Emilio Castelar, Jesús sin Soga y Templo."
+  },
+  {
+    "id": 43437,
+    "nombre": "Soledad",
+    "itinerario": "Fuentes de Andalucía, San Juan Bosco, Plaza Nuestra Señora de los Remedios, Plaza de Puerta Cerrada, El Conde, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Avenida Miguel de Cervantes, Emilio Castelar, Jesús sin Soga, Plaza de España, CARRERA OFICIAL, Plaza Ntra. Sra. del Valle, Ramón Freire Gálvez, José Canalejas, Santa Florentina, Sevilla, Carreras, Plaza Colón, Carmen y Templo."
+  },
+  {
+    "id": 9329,
+    "nombre": "Resucitado",
+    "itinerario": "Plaza Nuestra Señora del Valle, Santa Cruz, Plaza de España (por delante del Ayuntamiento), Plaza Santa María, Fernández Pintado, Santa Ángela de la Cruz, Cánovas del Castillo, Plaza de la Constitución, Fray Carlos Amigo Vallejo, Emilio Castelar, Jesús sin Soga, Plaza España, CARRERA OFICIAL y Templo."
+  }
+]
