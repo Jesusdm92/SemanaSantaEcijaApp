@@ -31,7 +31,7 @@ function getHolyWeekDay(date: Date): string | null {
 
   // Comparar con Domingo de Resurrección
   const diffTime = checkDate.getTime() - easterDate.getTime()
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24))
 
   switch (diffDays) {
     case -7: return 'Domingo de Ramos'
@@ -64,7 +64,7 @@ export default function HoySale() {
   easterZero.setHours(0, 0, 0, 0)
 
   const diffTime = easterZero.getTime() - todayZero.getTime()
-  const diffDaysToEaster = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  const diffDaysToEaster = Math.round(diffTime / (1000 * 60 * 60 * 24))
   // Domingo de Ramos es 7 días antes del Domingo de Resurrección
   const daysToPalmSunday = diffDaysToEaster - 7
 
