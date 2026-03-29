@@ -2,7 +2,7 @@ export default {
   "expo": {
     "name": "Cruz de Guía Écija",
     "slug": "cruz-de-guia-ecija",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon-optimized.png",
     "userInterfaceStyle": "automatic",
@@ -18,7 +18,7 @@ export default {
       "icon": "./assets/icon-ios.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.jesusdm92.semanasantaecijaapp",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "infoPlist": {
         "NSCameraUsageDescription": "La aplicación necesita acceso a la cámara para que puedas tomar fotos de las hermandades y compartirlas.",
         "NSPhotoLibraryUsageDescription": "Se necesita acceso a la galería para que puedas seleccionar y compartir imágenes de la Semana Santa.",
@@ -27,7 +27,7 @@ export default {
     },
     "android": {
       "package": "com.jesusdm92.semanasantaecijaapp",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-optimized.png",
         "backgroundColor": "#4b0082"
